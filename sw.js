@@ -13,7 +13,8 @@ self.addEventListener('install', function(e) {
             // added to the cache.
             return cache.addAll([
                 '/ud-app/',
-                '/manifest.json',
+                '/ud-app/src/*',
+                '/ud-app/manifest.json',
                 'https://unpkg.com/onsenui/css/onsenui.min.css',
                 'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
                 'https://unpkg.com/onsenui/js/onsenui.min.js'
