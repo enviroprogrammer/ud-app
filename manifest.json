@@ -3,7 +3,7 @@
   "short_name": "Undecided?",
   "start_url": "/ud-app/",
   "display": "standalone",
-  "theme_color": "#ef4e2a",
+  "theme_color": "#000",
   "background_color": "#fff",
   "icons": [{
     "src": "https://placehold.co/192x192.png",
