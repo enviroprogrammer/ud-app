@@ -12,8 +12,7 @@ self.addEventListener('install', function(e) {
             // If the request for any of these resources fails, _none_ of the resources will be
             // added to the cache.
             return cache.addAll([
-                '/',
-                '/index.html',
+                '/ud-app/',
                 '/manifest.json',
                 'https://unpkg.com/onsenui/css/onsenui.min.css',
                 'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
