@@ -593,7 +593,7 @@ document.getElementById('scorecard').innerHTML = `
             <div class="alert-dialog-title">Return Home</div>
             <div class="alert-dialog-content">Are you sure you want to return to the homepage? Doing so will erase all game data.</div>
             <div class="alert-dialog-footer">
-                <ons-alert-dialog-button id="yes-home" onclick="window.location.href = '/index.html'">Yes</ons-alert-dialog-button>
+                <ons-alert-dialog-button id="yes-home" onclick="window.location.href = '/ud-app/'">Yes</ons-alert-dialog-button>
                 <ons-alert-dialog-button id="no-home" style="color: red" onclick="hideReturnHomeDialog()">No</ons-alert-dialog-button>
             </div>
         </ons-alert-dialog>
