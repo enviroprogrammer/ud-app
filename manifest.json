@@ -6,24 +6,24 @@
   "theme_color": "#000",
   "background_color": "#fff",
   "icons": [{
-    "src": "/ud-app/public/undecided_logo_bg.png",
+    "src": "/public/undecided_logo_bg.png",
     "sizes": "192x192",
     "type": "image/png"
   },{
-    "src": "/ud-app/public/undecided_logo_bg.png",
+    "src": "/public/undecided_logo_bg.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
   "screenshots": [
     {
-      "src": "/ud-app/public/undecided_logo_bg.png",
+      "src": "/public/undecided_logo_bg.png",
       "sizes": "640x320",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Undecided? Companion App"
     },
     {
-      "src": "/ud-app/public/undecided_logo_bg.png",
+      "src": "/public/undecided_logo_bg.png",
       "sizes": "640x900",
       "type": "image/png",
       "form_factor": "narrow",
