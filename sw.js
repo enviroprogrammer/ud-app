@@ -12,6 +12,7 @@ self.addEventListener('install', function(e) {
             // added to the cache.
             return cache.addAll([
                 '/ud-app/',
+                '/ud-app/index.html',
                 '/ud-app/src/*',
                 '/ud-app/manifest.json',
                 'https://unpkg.com/onsenui/css/onsenui.min.css',
@@ -36,6 +37,7 @@ self.addEventListener('fetch', function(e) {
 caches.open('myonsenuipwa').then(cache => {
     return cache.addAll([
         '/ud-app/',
+        '/ud-app/index.html',
         '/ud-app/src/*',
         '/ud-app/manifest.json',
         'https://unpkg.com/onsenui/css/onsenui.min.css',
