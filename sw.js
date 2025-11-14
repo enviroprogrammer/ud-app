@@ -42,4 +42,4 @@ caches.open('myonsenuipwa').then(cache => {
         'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
         'https://unpkg.com/onsenui/js/onsenui.min.js'
     ]);
-}
+})
