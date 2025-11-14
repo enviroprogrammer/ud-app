@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(e) {
 });
 
 // make PWA available when it's offline
-caches.open('myonsenuiapp').then(cache => {
+caches.open('myonsenuipwa').then(cache => {
     return cache.addAll([
         '/ud-app/',
         '/ud-app/src/*',
