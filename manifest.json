@@ -1,7 +1,6 @@
 {
   "name": "Undecided? Companion App",
   "short_name": "Undecided?",
-  "scope": "/ud-app/",
   "start_url": "/ud-app/",
   "display": "standalone",
   "theme_color": "#000",
