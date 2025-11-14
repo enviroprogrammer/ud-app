@@ -31,3 +31,15 @@ self.addEventListener('fetch', function(e) {
             .then(response => response || fetch(e.request))
     );
 });
+
+// make PWA available when it's offline
+caches.open('myonsenuiapp').then(cache => {
+    return cache.addAll([
+        '/ud-app/',
+        '/ud-app/src/*',
+        '/ud-app/manifest.json',
+        'https://unpkg.com/onsenui/css/onsenui.min.css',
+        'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
+        'https://unpkg.com/onsenui/js/onsenui.min.js'
+    ]);
+}
