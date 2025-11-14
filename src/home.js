@@ -16,7 +16,7 @@ document.getElementById('home').innerHTML = `
             </div>
           </ons-toolbar>
           <section style="text-align: center; padding: 10px">
-            <h1>Welcome to the complementary facilitation app for <i>Undecided?</i></h1>
+            <h1>Welcome to the companion app for <i>Undecided?</i></h1>
             <p style="font-size: 20px; margin-top: 3px;">Say goodbye to using Excel spreadsheets to moderate the game <span role="img" aria-label="wave">👋</span></p>
             <div>
               <ons-button id="new-game"><ons-icon icon="fa-puzzle-piece" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon>New Game</ons-button>
