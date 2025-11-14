@@ -7,7 +7,7 @@ self.addEventListener('install', function(e) {
     // waitUntil tells the browser that the install event is not finished until we have
     // cached all of our files
     e.waitUntil(
-        caches.open('myonsenapppwa').then(cache => {
+        caches.open('ud-app-pwa').then(cache => {
             // If the request for any of these resources fails, _none_ of the resources will be
             // added to the cache.
             return cache.addAll([
@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(e) {
 });
 
 // make PWA available when it's offline
-caches.open('myonsenuipwa').then(cache => {
+caches.open('ud-app-pwa').then(cache => {
     return cache.addAll([
         '/ud-app',
         '/ud-app/src/*.js',
