@@ -7,8 +7,7 @@ self.addEventListener('install', function(e) {
     // waitUntil tells the browser that the install event is not finished until we have
     // cached all of our files
     e.waitUntil(
-        // Here we call our cache "myonsenuipwa", but you can name it anything unique
-        caches.open('myonsenuipwa').then(cache => {
+        caches.open('ud-app').then(cache => {
             // If the request for any of these resources fails, _none_ of the resources will be
             // added to the cache.
             return cache.addAll([
