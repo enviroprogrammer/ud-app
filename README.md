@@ -14,3 +14,5 @@ Did you know that you could download the app directly to your device, too? Read 
 ## Adding the App to your Home Screen 
 
 <b>iOS</b>
+
+<b>Android</b>
