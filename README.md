@@ -12,3 +12,5 @@ On a mobile device, visit https://enviroprogrammer.github.io/ud-app/ in your fav
 Did you know that you could download the app directly to your device, too? Read the section below to find out how!
 
 ## Adding the App to your Home Screen 
+
+<b>iOS</b>
