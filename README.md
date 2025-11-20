@@ -9,7 +9,7 @@ To help with facilitating <i><a href="https://ppig.org/files/2020-PPIG-31st-beck
 On a mobile device, visit https://enviroprogrammer.github.io/ud-app/ in your favourite browser. You could also access the app from a computer, but it is optimized for mobile.
 
 
-Did you know that you could download the app directly to your device, too? Read the section below to find out how!
+Did you know that you could install the app directly to your device, too? Read the section below to find out how!
 
 ## Installing the App to a Mobile Device
 This app is a <b><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app">Progressive Web App (PWA)</a></b>, meaning that it is a web app that behaves exactly like a typical mobile app. In other words, you can install PWAs to your device straight from the browser. PWAs can also be accessed offline.
