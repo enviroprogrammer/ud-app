@@ -31,4 +31,7 @@ Did you know that you could download the app directly to your device, too? Read 
 
 ![Undecided? app on iOS home screen](/public/instructions/iOS/downloaded-app.jpg)
 
+6. Open the app and enjoy!
+![Undecided? app opened after installation](/public/instructions/iOS/installed-app-open.jpg)
+
 <b>Android</b>
