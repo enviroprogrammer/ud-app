@@ -16,6 +16,8 @@ Did you know that you could download the app directly to your device, too? Read 
 <b>iOS</b>
 
 1. Open the app in Safari.
+![Undecided? app open in Safari on iOS](/public/instructions/iOS/app-open-in-safari.jpg)
+
 2. Tap the Share button.
 3. Select <b>Add to Home Screen</b>.
 4. Select <b>Add</b>.
