@@ -41,8 +41,6 @@ Below are instructions on how to install this app on either iOS or Android.
 
 On Android devices, the app can be installed from any browser, but I'll provide a few examples here.
 
-<b>Microsoft Edge</b>
-
-<b>Samsung Internet</b>
+<b>Firefox</b>
 
 <b>Chrome</b>
