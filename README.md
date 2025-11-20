@@ -11,7 +11,10 @@ On a mobile device, visit https://enviroprogrammer.github.io/ud-app/ in your fav
 
 Did you know that you could download the app directly to your device, too? Read the section below to find out how!
 
-## Adding the App to your Home Screen 
+## Installing the App to a Mobile Device
+This app is a <b><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app">Progressive Web App (PWA)</a></b>, meaning that it is a web app that behaves exactly like a typical mobile app. In other words, you can install PWAs to your device straight from the browser. PWAs can also be accessed offline.
+
+Below are instructions on how to install this app on either iOS or Android.
 
 <b>iOS</b>
 
