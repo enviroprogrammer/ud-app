@@ -28,6 +28,7 @@ Did you know that you could download the app directly to your device, too? Read 
 ![Adding Undecided? app to home screen](/public/instructions/iOS/add-to-home-screen.jpg)
 
 5. The app will then appear on your home screen, like so:
+
 ![Undecided? app on iOS home screen](/public/instructions/iOS/downloaded-app.jpg)
 
 <b>Android</b>
