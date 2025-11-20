@@ -22,6 +22,8 @@ Did you know that you could download the app directly to your device, too? Read 
 ![Safari's Share button, circled](/public/instructions/iOS/safari-share-button.jpg)
 
 3. Select <b>Add to Home Screen</b>.
+![Add to Home Screen option displayed in share menu among other sharing options](/public/instructions/iOS/options.jpg)
+
 4. Select <b>Add</b>.
 5. The app will then appear on your home screen, like so:
 
