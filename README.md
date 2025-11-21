@@ -53,7 +53,7 @@ On Android devices, the app can be installed from any browser, but I'll provide 
 
 <b>Chrome</b>
 
-If you would prefer not to see the browser logo when installing the app, you may use Chrome if you would like to get the full mobile app experience.
+If you would prefer not to see the browser logo when installing the app, you may use Chrome to install it.
 
 1. Open the app in Chrome.
 
