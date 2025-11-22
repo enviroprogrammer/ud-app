@@ -58,7 +58,7 @@ On Android devices, the app can be installed from any browser, but I'll provide 
 
 <b>Chrome</b>
 
-If you would prefer not to see the browser on the app's icon, you may use Chrome to install it.
+If you would prefer not to see the browser on the app's icon after it has been installed (or you just prefer Chrome), you may use Chrome to install it.
 
 1. Open the app in Chrome.
 ![Undecided? app open in Chrome](/public/instructions/android/chrome/app-open-in-chrome.jpg)
