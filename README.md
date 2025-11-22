@@ -52,7 +52,8 @@ On Android devices, the app can be installed from any browser, but I'll provide 
 3. Select <b>Add</b> when asked if you would like to add the app to your home screen.
 ![Firefox menu open with option to add app to home screen](/public/instructions/android/firefox/firefox-add-home-screen.jpg)
 
-5. The app will appear on your home screen with the Firefox logo at the bottom right corner of the icon. Use this to open the app and enjoy!
+4. The app will appear on your home screen with the Firefox logo at the bottom right corner of the icon. Use this to open the app and enjoy!
+
 ![Installed app with Firefox logo on icon](/public/instructions/android/firefox/installed-app-with-firefox-logo.jpg)
 
 <b>Chrome</b>
