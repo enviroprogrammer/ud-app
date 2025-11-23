@@ -145,6 +145,16 @@ let hideReturnHomeDialog = function() {
     }
 }
 
+const ft = document.getElementById('facilitator-toggle');
+ft.addEventListener('change', function() {
+
+    if (ft.checked) {
+        ons.notification.alert('Facilitator Mode is ON');
+    } else {
+        ons.notification.alert('Facilitator Mode is OFF');
+    }
+});
+
 document.getElementById('scorecard').innerHTML = `
     <template id="scorecard.html">
         <ons-page id="scorecard">
@@ -161,6 +171,7 @@ document.getElementById('scorecard').innerHTML = `
             
             <section style="text-align: center; padding: 10px">
                 <div id="tables">
+                    <h1>Facilitator Mode: <ons-switch id="facilitator-toggle"></ons-switch></h1>
                     <h1 id="current-phase"></h1>
                     <h1 id="current-round"></h1>
                     <h1 id="current-player"></h1>
