@@ -145,16 +145,6 @@ let hideReturnHomeDialog = function() {
     }
 }
 
-const ft = document.getElementById('facilitator-toggle');
-ft.addEventListener('change', function() {
-
-    if (ft.checked) {
-        ons.notification.alert('Facilitator Mode is ON');
-    } else {
-        ons.notification.alert('Facilitator Mode is OFF');
-    }
-});
-
 document.getElementById('scorecard').innerHTML = `
     <template id="scorecard.html">
         <ons-page id="scorecard">
