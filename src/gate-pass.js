@@ -4,7 +4,7 @@ let playerList; // list of current players in the game
 
 // to be done at the end of each phase;
 // each player crafts a narrative of everything they've done up to that point
-let milestoneReview = function() {
+let gatePass = function() {
     // startNewPhase();
     // futureEffectTriggered = 'yes';
     let mr = document.getElementById('milestone-review');

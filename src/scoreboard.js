@@ -145,6 +145,30 @@ let hideReturnHomeDialog = function() {
     }
 }
 
+// toggle facilitator mode on and off so that the facilitator can only see the scores
+let facilitatorToggle = function () {
+    const ft = document.getElementById('facilitator-toggle');
+    const tables = document.getElementById('tables');
+    const reset = document.getElementById('reset');
+    const changeScenario = document.getElementById('change-scenario');
+    const gatePass = document.getElementById('gate-pass');
+    const returnHome = document.getElementById('return-home');
+
+    if (ft.checked) { // facilitator mode on
+        tables.style.display = 'block';
+        reset.disabled = false;
+        changeScenario.disabled = false;
+        gatePass.disabled = false;
+        returnHome.disabled = false;
+    } else { // facilitator mode off
+        tables.style.display = 'none';
+        reset.disabled = true;
+        changeScenario.disabled = true;
+        gatePass.disabled = true;
+        returnHome.disabled = true;
+    }
+}
+
 document.getElementById('scorecard').innerHTML = `
     <template id="scorecard.html">
         <ons-page id="scorecard">
@@ -160,12 +184,15 @@ document.getElementById('scorecard').innerHTML = `
             </ons-toolbar>
             
             <section style="text-align: center; padding: 10px">
-                <div id="tables">
-                    <h1>Facilitator Mode: <ons-switch id="facilitator-toggle"></ons-switch></h1>
+                <div>
+                    <h1><b>Facilitator Mode:</b> <ons-switch onchange="facilitatorToggle()" id="facilitator-toggle"></ons-switch></h1>
+                    <br/>
                     <h1 id="current-phase"></h1>
                     <h1 id="current-round"></h1>
                     <h1 id="current-player"></h1>
                     <br/><br/>
+                </div>
+                <div id="tables" style="display: none;">
                     <h2>Team Scores</h2>
                     <table id="team-scorecard-table" style="width: 100%;">
                         <tr id="team-headers">
@@ -201,8 +228,7 @@ document.getElementById('scorecard').innerHTML = `
                             <td id="total-phase-3"></td>
                         </tr>
                     </table>
-                </div>
-                <div style="padding: 10px;">
+                                    <div style="padding: 10px;">
                     <h2>Individual Action Points</h2>
                     <table id="ap-scorecard-table" style="width: 100%;">
                         <tr id="ap-headers">
@@ -238,7 +264,6 @@ document.getElementById('scorecard').innerHTML = `
                         </tr>
                     </table>
                 </div>
-                <div>
                 </div>
                 <div id="buttons">
                 <br/>
@@ -247,22 +272,22 @@ document.getElementById('scorecard').innerHTML = `
                         Scan QR Code to Play Card
                     </ons-button></div>
                     <br/>
-                    <div><ons-button id="reset" onclick="showResetScoreboardDialog()">
+                    <div><ons-button id="reset" onclick="showResetScoreboardDialog()" disabled>
                         <ons-icon icon="ion-ios-refresh, material:md-rotate-right" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                         Reset Scoreboard
                     </ons-button></div>
                     <br/>
-                    <div><ons-button id="change-scenario" onclick="showBackToScenariosDialog()">
+                    <div><ons-button id="change-scenario" onclick="showBackToScenariosDialog()" disabled>
                         <ons-icon icon="ion-ios-shuffle, material:md-shuffle" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                         Change Scenario
                     </ons-button></div>
                     <br/>
-                    <div><ons-button id="start-milestone-review" onclick="milestoneReview()">
+                    <div><ons-button id="gate-pass" onclick="gatePass()" disabled>
                         <ons-icon icon="fa-ticket" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                         Gate Pass
                     </ons-button></div>
                     <br/>
-                    <div><ons-button id="home" onclick="showReturnHomeDialog()">
+                    <div><ons-button id="return-home" onclick="showReturnHomeDialog()" disabled>
                         <ons-icon icon="ion-ios-home, material:md-home" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                         Return Home
                     </ons-button></div>
