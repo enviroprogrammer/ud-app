@@ -61,35 +61,6 @@ let collectMilestoneReviewVotes = function() {
     });
 
     document.getElementsByName('mr-vote').forEach(input => input.value = 0);
-
-
-    // start new phase
-    // if (currentPhase === 1 || currentPhase === 2) {
-    //     ons.notification.alert(`Based on your votes, ${winner} had the best narrative! ${winner} gets an extra 3 AP points.`).then(() => {
-    //         // get winner's role, then award 3 AP points to the winner
-    //         switch (winner) {
-    //             case (players[0]): // team lead
-    //                 teamLeadApScore += 3;
-    //                 break;
-    //             case (players[1]): // tech lead
-    //                 techLeadApScore += 3;
-    //                 break;
-    //             case (players[2]): // systems architect
-    //                 sysArchApScore += 3;
-    //                 break;
-    //             case (players[3]): // ux lead
-    //                 uxLeadApScore += 3;
-    //                 break;
-    //         }
-    //         apTableSetup();
-    //         startNewPhase();
-    //     });
-    // // because this is the last phase, just reveal the winner
-    // } else if (currentPhase === 3) {
-    //     ons.notification.alert(`Based on your votes, ${winner} had the best narrative!`);
-    // }
-
-    // hideMilestoneReview();
 }
 
 let showWinner = function() {
