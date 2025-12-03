@@ -34,20 +34,40 @@ const dtTeamLeadP3 = 40;
 
 // gate conditions for Earthbook
 // Phase 1
-const ebSysArchP1 = 6;
-const ebUXLeadP1 = 15;
-const ebTechLeadP1 = 9;
-const ebTeamLeadP1 = 14;
+// const ebSysArchP1 = 6;
+// const ebUXLeadP1 = 15;
+// const ebTechLeadP1 = 9;
+// const ebTeamLeadP1 = 14;
+
+// Phase 1 (condensed)
+const ebSysArchP1 = 3;
+const ebUXLeadP1 = Math.floor(15 / 2);
+const ebTechLeadP1 = Math.floor(9 / 2);
+const ebTeamLeadP1 = 7;
+
 // Phase 2
-const ebSysArchP2 = 22;
-const ebUXLeadP2 = 30;
-const ebTechLeadP2 = 24;
-const ebTeamLeadP2 = 25;
+// const ebSysArchP2 = 22;
+// const ebUXLeadP2 = 30;
+// const ebTechLeadP2 = 24;
+// const ebTeamLeadP2 = 25;
+
+// Phase 2 (condensed)
+const ebSysArchP2 = 11;
+const ebUXLeadP2 = 15;
+const ebTechLeadP2 = 12;
+const ebTeamLeadP2 = Math.floor(25 / 2);
+
 // Phase 3
-const ebSysArchP3 = 41;
-const ebUXLeadP3 = 41;
-const ebTechLeadP3 = 39;
-const ebTeamLeadP3 = 39;
+// const ebSysArchP3 = 41;
+// const ebUXLeadP3 = 41;
+// const ebTechLeadP3 = 39;
+// const ebTeamLeadP3 = 39;
+
+// Phase 3 (condensed)
+const ebSysArchP3 = Math.floor(41 / 2);
+const ebUXLeadP3 = Math.floor(41 / 2);
+const ebTechLeadP3 = Math.floor(39 / 2);
+const ebTeamLeadP3 = Math.floor(39 / 2);
 
 let hideGateCheckDialog = function() {
     let gc = document.getElementById('gate-check');
