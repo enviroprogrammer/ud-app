@@ -527,6 +527,24 @@ const cardJson = `{
             "process": 10,
             "team": 10
         }
+    },
+    {
+        "name": "Rebranding of Project",
+        "scoreValues": {
+            "internal": 0,
+            "external": 0,
+            "process": -5,
+            "team": -5
+        }
+    },
+    {
+        "name": "Celebration of Honesty",
+        "scoreValues": {
+            "internal": 0,
+            "external": 0,
+            "process": 0,
+            "team": 5
+        }
     }
   ]
  }`;
