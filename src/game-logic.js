@@ -20,7 +20,7 @@ let sysArchP3Score = 0;
 let uxLeadP3Score = 0;
 
 // AP points for each player
-let teamLeadApScore = 0;
+let teamLeadApScore = 4; // according to spreadsheet, the team lead starts with 4 AP points
 let techLeadApScore = 0;
 let sysArchApScore = 0;
 let uxLeadApScore = 0;

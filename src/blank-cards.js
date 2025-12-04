@@ -38,9 +38,35 @@ let playBlankCard = function() {
     let ux = Number(inputs[3].value);
 
     if (teaml + techl + sys + ux > totalApScore) {
-        ons.notification.alert(`You can only distribute up to ${totalApScore} points. Try again.`);
+        ons.notification.alert(`You can only distribute up to ${totalApScore} points. Try again.`)
+            .then(() => {
+                showBlankCardDialog();
+            });
     } else {
         updateBlankCardScores(teaml, techl, sys, ux);
+        switch (currentPhase) {
+            case 1:
+                teamLeadP1Score += teaml;
+                techLeadP1Score += techl;
+                sysArchP1Score += sys;
+                uxLeadP1Score += ux;
+                totalPhase1Score = teamLeadP1Score + techLeadP1Score + sysArchP1Score + uxLeadP1Score;
+                break;
+            case 2:
+                teamLeadP2Score += teaml;
+                techLeadP2Score += techl;
+                sysArchP2Score += sys;
+                uxLeadP2Score += ux;
+                totalPhase2Score += teamLeadP2Score + techLeadP2Score + sysArchP2Score + uxLeadP2Score;
+                break;
+            case 3:
+                teamLeadP3Score += teaml;
+                techLeadP3Score += techl;
+                sysArchP3Score += sys;
+                uxLeadP3Score += ux;
+                totalPhase3Score += teamLeadP3Score + techLeadP3Score + sysArchP3Score + uxLeadP3Score;
+                break;
+        }
     }
     ons.notification.alert(`Blank card point distribution:<br/><br/>${sessionStorage.getItem('Team Lead')}: ${teaml}<br/>${sessionStorage.getItem('Technical Lead')}: ${techl}<br/>${sessionStorage.getItem('Systems Architect')}: ${sys}<br/>${sessionStorage.getItem('UX Lead')}: ${ux}`);
     removeBlankCardDialog();
