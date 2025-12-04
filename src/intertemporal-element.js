@@ -24,10 +24,14 @@ let intertemporalElement = function (card) {
     if (noPointsCounted === 'no') {
         // intertemporal effect begins the week after the card was played
         if (ieCounter === 0) {
-            // cardApPoints();
             ieCounter = 1;
         } else if (ieCounter >= 1 && ieCounter < weeks + 1) {
-            ieAlert = ons.notification.alert(`Intertemporal effect from ${cardWithITElement} added:<br/><br/>Team: ${ie["team"]}<br/>Process: ${ie["process"]}<br/>Internal: ${ie["internal"]}<br/>External: ${ie["external"]}`);
+            if (facilitatorModeOn) {
+                ieAlert = ons.notification.alert(`Intertemporal effect from ${cardWithITElement} added:<br/><br/>Team: ${ie["team"]}<br/>Process: ${ie["process"]}<br/>Internal: ${ie["internal"]}<br/>External: ${ie["external"]}`);
+            } else {
+                ieAlert = ons.notification.alert(`Intertemporal effect from ${cardWithITElement} added.`);
+            }
+
 
             if (currentPhase === 1) {
                 teamLeadP1Score += ie["team"];

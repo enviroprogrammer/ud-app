@@ -20,7 +20,7 @@ let sysArchP3Score = 0;
 let uxLeadP3Score = 0;
 
 // AP points for each player
-let teamLeadApScore = 4; // according to spreadsheet, the team lead starts with 4 AP points
+let teamLeadApScore = 4; // team lead organizes the team before the project begins
 let techLeadApScore = 0;
 let sysArchApScore = 0;
 let uxLeadApScore = 0;
@@ -36,13 +36,20 @@ let totalPhase2Score = techLeadP2Score + teamLeadP2Score + sysArchP2Score + uxLe
 let totalPhase3Score = techLeadP3Score + teamLeadP3Score + sysArchP3Score + uxLeadP3Score;
 
 // total AP points across players
-let totalApScore = 0;
+// the total starts at 4 because the team lead starts with 4 AP points
+let totalApScore = 4;
 
 let currentPhase = 1; // 3 phases; game begins at phase 1
 let currentRound = 1; // each phase has a certain # of rounds players must get through
 let playedCard; // the card that the user plays based on the QR code scanned from its physical counterpart
 let currentPlayer; // keep track of current player (game begins with team lead and proceeds clockwise around the table)
 let orderedPlayerArray = []; // players are added in the order they go in, starting with tech lead
+
+let usCardPlayedInP1 = false; // check if a user studies card has been played in phase 1
+let anCardPlayedInP1 = false; // check if an all nighter card has been played in phase 1
+let adCardPlayedInP1 = false; // check if an architectural design card has been played in phase 1
+let saCardPlayedInP2 = false; // check if a software arch card has been played in p2
+let usCardPlayedInP3 = false; // check if a user studies card has been played in phase 3
 
 // initialize scores upon starting a new game or resetting scoreboard
 let initialScoreSetup = function() {
@@ -165,160 +172,6 @@ let setPlayerArray = function() {
     orderedPlayerArray = [sessionStorage.getItem('Team Lead'), sessionStorage.getItem('Technical Lead'), sessionStorage.getItem('Systems Architect'), sessionStorage.getItem('UX Lead')];
     sessionStorage.setItem('Players', orderedPlayerArray);
 }
-
-let playCard = function() {
-    if (playedCard) {
-        sessionStorage.setItem('Played Card', playedCard);
-        switch (playedCard) {
-            case 'Blank A' || 'Blank B' || 'Blank C' || 'Blank D' || 'Blank E':
-                if (totalApScore <= 0) {
-                    ons.notification.alert('You do not have enough AP points to distribute among players.');
-                } else {
-                    showBlankCardDialog();
-                }
-
-                if (cardWithITElement) {
-                    intertemporalElement(cardWithITElement);
-                }
-                cardApPoints();
-                handleTurns();
-                break;
-            case 'New Staff':
-                if (currentScenario === 'DysTalk 📞') {
-                    console.log('new staff: dystalk version')
-                    dystalkNewStaff();
-                    cardApPoints();
-                    handleTurns();
-                } else if (currentScenario === 'Angry Cats 🐱') {
-                    angryCatsNewStaff();
-                    cardApPoints();
-                    handleTurns();
-                } else if (currentScenario === 'Earthbook 🌎') {
-                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
-                }
-                break;
-            case 'Competitor Commotion A':
-                if (currentScenario === 'Earthbook 🌎') {
-                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
-                } else {
-                    compCommotionA();
-                    cardApPoints();
-                    handleTurns();
-                }
-                break;
-            case 'Competitor Commotion B':
-                if (currentScenario === 'DysTalk 📞') {
-                    ons.notification.alert(`Well done! You have successfully filed a legal complaint against your competitor and won the case.<br/><br/>Systems architect ${sessionStorage.getItem('Systems Architect')} gets 4 points, tech lead ${sessionStorage.getItem('Technical Lead')} gets 2 points, and team lead ${sessionStorage.getItem('Team Lead')} gets 3 points!`)
-                        .then(() => {
-                            if (currentPhase === 1) {
-                                sysArchP1Score += 4;
-                                techLeadP1Score += 2;
-                                teamLeadP1Score += 3;
-                                totalPhase1Score = sysArchP1Score + techLeadP1Score + teamLeadP1Score + uxLeadP1Score;
-                                phase1ScoreSetup();
-                            } else if (currentPhase === 2) {
-                                sysArchP2Score += 4;
-                                techLeadP2Score += 2;
-                                teamLeadP2Score += 3;
-                                totalPhase2Score = sysArchP2Score + techLeadP2Score + teamLeadP2Score + uxLeadP2Score;
-                                phase2ScoreSetup();
-                            } else if (currentPhase === 3) {
-                                sysArchP3Score += 4;
-                                techLeadP3Score += 2;
-                                teamLeadP3Score += 3;
-                                totalPhase3Score = sysArchP3Score + techLeadP3Score + teamLeadP3Score + uxLeadP3Score;
-                                phase3ScoreSetup();
-                            }
-                        })
-                        .then(() => {
-                            cardApPoints();
-                        })
-                        .then(() => {
-                            if (cardWithITElement) {
-                                intertemporalElement(cardWithITElement);
-                            }
-                        })
-                        .then(() => {
-                            setCurrentRound();
-                        })
-                        .then(() => {
-                            apTableSetup();
-                        })
-                        .then(() => {
-                            handleTurns();
-                        });
-                } else if (currentScenario === 'Angry Cats 🐱') {
-                    acCompCommotionB();
-                    cardApPoints();
-                    handleTurns();
-                } else if (currentScenario === 'Earthbook 🌎') {
-                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
-                }
-                break;
-            case 'Stakeholder Visit':
-                ons.notification.alert('Pitch a narrative of your development progress to the facilitator to evaluate. If your narrative is a success, do nothing. If your narrative is a loss, lose 2 cards.')
-                    .then(() => {
-                        cardApPoints();
-                    })
-                    .then(() => {
-                        if (cardWithITElement) {
-                            intertemporalElement(cardWithITElement);
-                        }
-                    })
-                    .then(() => {
-                        setCurrentRound();
-                    })
-                    .then(() => {
-                        apTableSetup();
-                    })
-                    .then(() => {
-                        handleTurns();
-                    });
-                break;
-            default:
-                if (currentPhase === 1) {
-                    cardApPoints();
-                    updatePhase1Scores(playedCard);
-                    // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
-                    if (noPointsCounted === 'yes') {
-                        noPointsCounted = 'no';
-                    }
-                    handleTurns();
-                } else if (currentPhase === 2) {
-                    cardApPoints();
-                    updatePhase2Scores(playedCard);
-                    // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
-                    handleTurns();
-                } else if (currentPhase === 3) {
-                    cardApPoints();
-                    updatePhase3Scores(playedCard);
-                    // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
-                    if (noPointsCounted === 'yes') {
-                        noPointsCounted = 'no';
-                    }
-                    handleTurns();
-                }
-                break;
-        }
-
-        if (document.getElementById('qr-code-scanner')) {
-            document.getElementById('qr-code-scanner').remove(); // remove scanner dialog from dom to prepare for scanning the next qr code
-        }
-
-        hidePlayCardDialog();
-    }
-    currentRound++;
-}
-
 // add 1 to each player's AP points once they finish their turn playing a card
 let cardApPoints = function() {
     switch (currentPlayer) {
@@ -347,6 +200,7 @@ let getCardIndex = function(card) {
 // update scores for phase 1 upon playing a card
 let updatePhase1Scores = function(card) {
     getCardIndex(card);
+    currentRound++;
 
     if (currentPhase === 1) { // no points counted for one round
         if (workedWithExperts === 'yes' && noPointsCounted === 'yes') {
@@ -375,6 +229,7 @@ let updatePhase1Scores = function(card) {
 // update scores for phase 2 upon playing a card
 let updatePhase2Scores = function(card) {
     getCardIndex(card);
+    currentRound++;
 
     if (currentPhase === 2) {
         techLeadP2Score += cardObj.cards[cardIndex].scoreValues["process"];
@@ -396,6 +251,7 @@ let updatePhase2Scores = function(card) {
 // update scores for phase 3 upon playing a card
 let updatePhase3Scores = function(card) {
     getCardIndex(card);
+    currentRound++;
 
     if (currentPhase === 3) {
         if (disclosedToBOD === 'yes' && noPointsCounted === 'yes') { // no points counted for one round
@@ -442,12 +298,6 @@ let startNewPhase = function() {
     currentPhase++;
     setCurrentPhase();
     sessionStorageSetup();
-
-    // if (currentPhase === 3 && futureEffectTriggered === 'no') {
-    //     // console.log('future effect');
-    //     futureEffectTriggered = 'yes';
-    //     futureEffect();
-    // }
 }
 
 let addScoresToGatePass = function() {
@@ -594,7 +444,7 @@ let hidePlayCardDialog = function() {
 
     if (pcd) {
         pcd.remove();
-        playedCard = '';
+        playedCard = ''; // reset played card
     }
 }
 

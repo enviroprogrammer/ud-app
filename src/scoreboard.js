@@ -1,3 +1,5 @@
+let facilitatorModeOn;
+
 let showResetScoreboardDialog = function() {
     let rs = document.getElementById('reset-scoreboard-dialog');
 
@@ -50,11 +52,11 @@ let resetScoreboard = function() {
     uxLeadP2Score = 0;
     uxLeadP3Score = 0;
 
-    teamLeadApScore = 0;
+    teamLeadApScore = 4;
     techLeadApScore = 0;
     sysArchApScore = 0;
     uxLeadApScore = 0;
-    totalApScore = 0;
+    totalApScore = 4;
 
     teamLeadBlank = 0;
     techLeadBlank = 0;
@@ -155,12 +157,14 @@ let facilitatorToggle = function () {
     const returnHome = document.getElementById('return-home');
 
     if (ft.checked) { // facilitator mode on
+        facilitatorModeOn = true;
         tables.style.display = 'block';
         reset.disabled = false;
         changeScenario.disabled = false;
         gatePass.disabled = false;
         returnHome.disabled = false;
     } else { // facilitator mode off
+        facilitatorModeOn = false;
         tables.style.display = 'none';
         reset.disabled = true;
         changeScenario.disabled = true;
