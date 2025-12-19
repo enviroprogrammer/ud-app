@@ -9,7 +9,8 @@ let addPlayer = function() {
         playerNum++; // increase number of players by 1 each time "add player" is pressed
         const inputFields = document.getElementById('input-fields')
         const newPlayer = inputFields.appendChild(document.createElement('ons-input'));
-        newPlayer.style.paddingBottom = '15px';
+        newPlayer.style.paddingBottom = '25px';
+        newPlayer.style.fontSize = '18px';
 
         const attributes = {
             type: 'text',
@@ -72,10 +73,10 @@ document.getElementById('players').innerHTML = `
             <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
           <section style="text-align: center">
-            <h2>Add players below:</h2>
-            <p style="padding-left: 10px; padding-right: 10px; font-size: 18px;"><i><b>Note:</b> At least 4 players' names must be added to be able to assign roles.</i></p>
+            <h2>Add <b>players</b> below:</h2>
+            <h3><i><b>Note:</b> At least 4 players' names must be added to be able to assign roles.</i></h3>
             <br/>
-            <div id="input-fields" style="display: flex; align-items: center; flex-direction: column;"></div>
+            <div id="input-fields" style="display: flex; align-items: center; flex-direction: column"></div>
             <div style="margin-top: 30px;">
                 <ons-button id="add-player" onclick="addPlayer()">
                     <ons-icon icon="ion-ios-add-circle, material:md-plus-circle" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon>
@@ -89,9 +90,6 @@ document.getElementById('players').innerHTML = `
                     Choose Roles
                 </ons-button>
             </div>
-<!--              <ons-fab position="bottom right" onclick="toggleMode()">-->
-<!--                <ons-icon id="toggle-2" icon="fa-lightbulb" size="60px" style="vertical-align: middle"></ons-icon>-->
-<!--              </ons-fab>-->
           </section>
         </ons-page>
     </template>

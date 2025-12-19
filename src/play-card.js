@@ -1,25 +1,33 @@
+let usCardPlayedInP1 = false; // check if a user studies card has been played in phase 1
+let anCardPlayedInP1 = false; // check if an all nighter card has been played in phase 1
+let adCardPlayedInP1 = false; // check if an architectural design card has been played in phase 1
+let saCardPlayedInP2 = false; // check if a software arch card has been played in p2
+let usCardPlayedInP3 = false; // check if a user studies card has been played in phase 3
+let playedCards = [];
+
 let playCard = function() {
     if (playedCard) {
-        roleRelatedBonuses(playedCard);
-        roleApPointsByCard(playedCard);
         sessionStorage.setItem('Played Card', playedCard);
+        playedCards.push(playedCard);
         switch (playedCard) {
-            case 'Blank A' || 'Blank B' || 'Blank C' || 'Blank D' || 'Blank E':
+            // blank cards
+            case 'Blank A':
+            case 'Blank B':
+            case 'Blank C':
+            case 'Blank D':
+            case 'Blank E':
                 if (totalApScore <= 0) {
                     ons.notification.alert('You do not have enough AP points to distribute among players.');
                 } else {
                     showBlankCardDialog();
                 }
 
-                if (cardWithITElement) {
-                    intertemporalElement(cardWithITElement);
-                }
                 cardApPoints();
                 handleTurns();
                 break;
+            // action cards
             case 'New Staff':
                 if (currentScenario === 'DysTalk 📞') {
-                    console.log('new staff: dystalk version')
                     dystalkNewStaff();
                     cardApPoints();
                     handleTurns();
@@ -35,52 +43,14 @@ let playCard = function() {
                 if (currentScenario === 'Earthbook 🌎') {
                     ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
                 } else {
-                    compCommotionA();
+                    acCompCommotionA();
                     cardApPoints();
                     handleTurns();
                 }
                 break;
             case 'Competitor Commotion B':
                 if (currentScenario === 'DysTalk 📞') {
-                    ons.notification.alert(`Well done! You have successfully filed a legal complaint against your competitor and won the case.<br/><br/>Systems architect ${sessionStorage.getItem('Systems Architect')} gets 4 points, tech lead ${sessionStorage.getItem('Technical Lead')} gets 2 points, and team lead ${sessionStorage.getItem('Team Lead')} gets 3 points!`)
-                        .then(() => {
-                            if (currentPhase === 1) {
-                                sysArchP1Score += 4;
-                                techLeadP1Score += 2;
-                                teamLeadP1Score += 3;
-                                totalPhase1Score = sysArchP1Score + techLeadP1Score + teamLeadP1Score + uxLeadP1Score;
-                                phase1ScoreSetup();
-                            } else if (currentPhase === 2) {
-                                sysArchP2Score += 4;
-                                techLeadP2Score += 2;
-                                teamLeadP2Score += 3;
-                                totalPhase2Score = sysArchP2Score + techLeadP2Score + teamLeadP2Score + uxLeadP2Score;
-                                phase2ScoreSetup();
-                            } else if (currentPhase === 3) {
-                                sysArchP3Score += 4;
-                                techLeadP3Score += 2;
-                                teamLeadP3Score += 3;
-                                totalPhase3Score = sysArchP3Score + techLeadP3Score + teamLeadP3Score + uxLeadP3Score;
-                                phase3ScoreSetup();
-                            }
-                        })
-                        .then(() => {
-                            cardApPoints();
-                        })
-                        .then(() => {
-                            if (cardWithITElement) {
-                                intertemporalElement(cardWithITElement);
-                            }
-                        })
-                        .then(() => {
-                            setCurrentRound();
-                        })
-                        .then(() => {
-                            apTableSetup();
-                        })
-                        .then(() => {
-                            handleTurns();
-                        });
+                    dtCompCommotionB();
                 } else if (currentScenario === 'Angry Cats 🐱') {
                     acCompCommotionB();
                     cardApPoints();
@@ -90,36 +60,73 @@ let playCard = function() {
                 }
                 break;
             case 'Stakeholder Visit':
-                ons.notification.alert('Pitch a narrative of your development progress to the facilitator to evaluate. If your narrative is a success, do nothing. If your narrative is a loss, lose 2 cards.')
-                    .then(() => {
-                        cardApPoints();
-                    })
-                    .then(() => {
-                        if (cardWithITElement) {
-                            intertemporalElement(cardWithITElement);
-                        }
-                    })
-                    .then(() => {
-                        setCurrentRound();
-                    })
-                    .then(() => {
-                        apTableSetup();
-                    })
-                    .then(() => {
-                        handleTurns();
-                    });
+                if (currentScenario === 'DysTalk 📞') {
+                    dtStakeholderVisit();
+                } else if (currentScenario === 'Angry Cats 🐱') {
+                    ons.notification.alert(`This card is not yet playable with <i>Angry Cats</i>!`);
+                } else if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                }
                 break;
-            default:
+            case 'Education Workshop':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    edWorkshop();
+                }
+                break;
+            case 'Teammate Troubles A':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    teammateTroublesA();
+                }
+                break;
+            case 'Teammate Troubles B':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    teammateTroublesB();
+                }
+                break;
+            case 'Change Plans A':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    changePlansA();
+                }
+                break;
+            case 'Change Plans B':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else if (currentScenario === 'DysTalk 📞') {
+                    ons.notification.alert(`This card is not yet playable with <i>DysTalk</i>!`);
+                } else {
+                    changePlansB();
+                }
+                break;
+            case 'Pull All Nighter A':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    pullAllNighterA();
+                }
+                break;
+            case 'Pull All Nighter B':
+                if (currentScenario === 'Earthbook 🌎') {
+                    ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
+                } else {
+                    pullAllNighterB();
+                }
+                break;
+            default: // regular cards
                 if (currentPhase === 1) {
                     cardApPoints();
-                    // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
+                    roleRelatedBonuses(playedCard);
+                    roleApPointsByCard(playedCard);
 
-                    if (noPointsCounted === 'yes') {
-                        noPointsCounted = 'no';
-                    }
+                    // card has an intertemporal element
+                    setCardWithITElement(playedCard);
 
                     if (playedCard === 'User Studies A' || playedCard === 'User Studies B') {
                         usCardPlayedInP1 = true;
@@ -134,42 +141,42 @@ let playCard = function() {
                     }
 
                     phase1RoleAP();
+                    twoInARow();
                     updatePhase1Scores(playedCard);
                     handleTurns();
                 } else if (currentPhase === 2) {
                     cardApPoints();
+                    roleRelatedBonuses(playedCard);
+                    roleApPointsByCard(playedCard);
+
                     // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
+                    setCardWithITElement(playedCard);
 
                     if (playedCard === 'Software Architecture Review A' || playedCard === 'Software Architecture Review B') {
                         saCardPlayedInP2 = true;
                     }
 
                     phase2RoleAP();
+                    twoInARow();
                     updatePhase2Scores(playedCard);
                     handleTurns();
                 } else if (currentPhase === 3) {
                     cardApPoints();
+                    roleRelatedBonuses(playedCard);
+                    roleApPointsByCard(playedCard);
+
                     // card has an intertemporal element
-                    if (cardWithITElement) {
-                        intertemporalElement(cardWithITElement);
-                    }
+                    setCardWithITElement(playedCard);
 
                     if (playedCard === 'User Studies A' || playedCard === 'User Studies B') {
                         usCardPlayedInP3 = true;
                     }
 
-                    if (noPointsCounted === 'yes') {
-                        noPointsCounted = 'no';
-                    }
-
                     phase3RoleAP();
+                    twoInARow();
                     updatePhase3Scores(playedCard);
                     handleTurns();
                 }
-                break;
         }
 
         if (document.getElementById('qr-code-scanner')) {

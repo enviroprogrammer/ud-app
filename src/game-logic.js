@@ -1,5 +1,3 @@
-// team scores across phases
-
 // tech lead focuses on process quality
 // team lead focuses on team strength
 // systems architect focuses on internal quality
@@ -19,40 +17,40 @@ let teamLeadP3Score = 0;
 let sysArchP3Score = 0;
 let uxLeadP3Score = 0;
 
+// total scores across roles
+let totalTechLeadScore = 0;
+let totalTeamLeadScore = 0;
+let totalSysArchScore = 0;
+let totalUXLeadScore = 0;
+
 // AP points for each player
 let teamLeadApScore = 4; // team lead organizes the team before the project begins
 let techLeadApScore = 0;
 let sysArchApScore = 0;
 let uxLeadApScore = 0;
 
-// parse card database into JSON object
-// app will compare QR code value against JSON object and calculate scores based on that card's score values
-let cardObj = JSON.parse(cardJson);
-let cardIndex;
-
-// total scores across phases
-let totalPhase1Score = techLeadP1Score + teamLeadP1Score + sysArchP1Score + uxLeadP1Score;
-let totalPhase2Score = techLeadP2Score + teamLeadP2Score + sysArchP2Score + uxLeadP2Score;
-let totalPhase3Score = techLeadP3Score + teamLeadP3Score + sysArchP3Score + uxLeadP3Score;
-
 // total AP points across players
 // the total starts at 4 because the team lead starts with 4 AP points
 let totalApScore = 4;
 
+// parse card database into JSON object
+// app will compare QR code value against JSON object and calculate scores based on that card's score values
+let cardObj = JSON.parse(cardDatabase);
+let cardIndex;
+
 let currentPhase = 1; // 3 phases; game begins at phase 1
 let currentRound = 1; // each phase has a certain # of rounds players must get through
-let playedCard; // the card that the user plays based on the QR code scanned from its physical counterpart
+let playedCard = ''; // the card that the user plays based on the QR code scanned from its physical counterpart
 let currentPlayer; // keep track of current player (game begins with team lead and proceeds clockwise around the table)
 let orderedPlayerArray = []; // players are added in the order they go in, starting with tech lead
 
-let usCardPlayedInP1 = false; // check if a user studies card has been played in phase 1
-let anCardPlayedInP1 = false; // check if an all nighter card has been played in phase 1
-let adCardPlayedInP1 = false; // check if an architectural design card has been played in phase 1
-let saCardPlayedInP2 = false; // check if a software arch card has been played in p2
-let usCardPlayedInP3 = false; // check if a user studies card has been played in phase 3
-
 // initialize scores upon starting a new game or resetting scoreboard
 let initialScoreSetup = function() {
+    // document.getElementById('team-lead-total').innerHTML = totalTeamLeadScore;
+    // document.getElementById('tech-lead-total').innerHTML = totalTechLeadScore;
+    // document.getElementById('sys-arch-total').innerHTML = totalSysArchScore;
+    // document.getElementById('ux-lead-total').innerHTML = totalUXLeadScore;
+
     setCurrentPhase();
     sessionStorageSetup();
     phase1TableSetup();
@@ -99,9 +97,10 @@ let sessionStorageSetup = function() {
     sessionStorage.setItem('External (Phase 3)', uxLeadP3Score);
     sessionStorage.setItem('Process (Phase 3)', techLeadP3Score);
     sessionStorage.setItem('Team (Phase 3)', teamLeadP3Score);
-    sessionStorage.setItem('Total Phase 1 Score', totalPhase1Score);
-    sessionStorage.setItem('Total Phase 2 Score', totalPhase2Score);
-    sessionStorage.setItem('Total Phase 3 Score', totalPhase3Score);
+    sessionStorage.setItem('Total Team Score', totalTeamLeadScore);
+    sessionStorage.setItem('Total Process Score', totalTechLeadScore);
+    sessionStorage.setItem('Total Internal Score', totalSysArchScore);
+    sessionStorage.setItem('Total External Score', totalUXLeadScore);
     sessionStorage.setItem('Phase', currentPhase);
 
     sessionStorage.setItem('Action Points for Team Lead', teamLeadApScore);
@@ -122,7 +121,10 @@ let phase1TableSetup = function() {
     document.getElementById('ux-lead-phase-1').innerHTML = uxLeadP1Score;
     document.getElementById('tech-lead-phase-1').innerHTML = techLeadP1Score;
     document.getElementById('team-lead-phase-1').innerHTML = teamLeadP1Score;
-    document.getElementById('total-phase-1').innerHTML = totalPhase1Score;
+    document.getElementById('team-lead-total').innerHTML = totalTeamLeadScore;
+    document.getElementById('tech-lead-total').innerHTML = totalTechLeadScore;
+    document.getElementById('sys-arch-total').innerHTML = totalSysArchScore;
+    document.getElementById('ux-lead-total').innerHTML = totalUXLeadScore;
     apTableSetup();
 }
 
@@ -131,7 +133,10 @@ let phase2TableSetup = function() {
     document.getElementById('ux-lead-phase-2').innerHTML = uxLeadP2Score;
     document.getElementById('tech-lead-phase-2').innerHTML = techLeadP2Score;
     document.getElementById('team-lead-phase-2').innerHTML = teamLeadP2Score;
-    document.getElementById('total-phase-2').innerHTML = totalPhase2Score;
+    document.getElementById('team-lead-total').innerHTML = totalTeamLeadScore;
+    document.getElementById('tech-lead-total').innerHTML = totalTechLeadScore;
+    document.getElementById('sys-arch-total').innerHTML = totalSysArchScore;
+    document.getElementById('ux-lead-total').innerHTML = totalUXLeadScore;
     apTableSetup();
 }
 
@@ -140,7 +145,10 @@ let phase3TableSetup = function() {
     document.getElementById('ux-lead-phase-3').innerHTML = uxLeadP3Score;
     document.getElementById('tech-lead-phase-3').innerHTML = techLeadP3Score;
     document.getElementById('team-lead-phase-3').innerHTML = teamLeadP3Score;
-    document.getElementById('total-phase-3').innerHTML = totalPhase3Score;
+    document.getElementById('team-lead-total').innerHTML = totalTeamLeadScore;
+    document.getElementById('tech-lead-total').innerHTML = totalTechLeadScore;
+    document.getElementById('sys-arch-total').innerHTML = totalSysArchScore;
+    document.getElementById('ux-lead-total').innerHTML = totalUXLeadScore;
     apTableSetup();
 }
 
@@ -202,23 +210,43 @@ let updatePhase1Scores = function(card) {
     getCardIndex(card);
     currentRound++;
 
-    if (currentPhase === 1) { // no points counted for one round
+    const process = cardObj.cards[cardIndex].scoreValues["process"];
+    const team = cardObj.cards[cardIndex].scoreValues["team"];
+    const internal = cardObj.cards[cardIndex].scoreValues["internal"];
+    const external = cardObj.cards[cardIndex].scoreValues["external"];
+
+    if (currentPhase === 1) {
+        // no points are counted for one round when playing the Angry Cats scenario and choosing to work with addiction experts for the major event
         if (workedWithExperts === 'yes' && noPointsCounted === 'yes') {
             techLeadP1Score += 0;
             teamLeadP1Score += 0;
             sysArchP1Score += 0;
             uxLeadP1Score += 0;
+
+            teamLeadApScore += 0;
+            techLeadApScore += 0;
+            sysArchApScore += 0;
+            uxLeadApScore += 0;
+
+            noPointsCounted = 'no';
         } else if ((workedWithExperts === 'yes' && noPointsCounted === 'no') || workedWithExperts === 'no') {
-            techLeadP1Score += cardObj.cards[cardIndex].scoreValues["process"];
-            teamLeadP1Score += cardObj.cards[cardIndex].scoreValues["team"];
-            sysArchP1Score += cardObj.cards[cardIndex].scoreValues["internal"];
-            uxLeadP1Score += cardObj.cards[cardIndex].scoreValues["external"];
-            totalPhase1Score = techLeadP1Score + teamLeadP1Score + sysArchP1Score + uxLeadP1Score;
+            techLeadP1Score += process;
+            teamLeadP1Score += team;
+            sysArchP1Score += internal;
+            uxLeadP1Score += external;
+
+            totalTechLeadScore += process;
+            totalTeamLeadScore += team;
+            totalSysArchScore += internal;
+            totalUXLeadScore += external;
 
             setCurrentRound();
-            setCardWithITElement(card);
 
-            if (teamLeadP1Score >= 10 && techLeadP1Score >= 10 && sysArchP1Score >= 10 && uxLeadP1Score >= 10) {
+            if (cardWithITElement) {
+                intertemporalElement(cardWithITElement);
+            }
+
+            if (totalTechLeadScore >= 10 && totalTeamLeadScore >= 10 && totalSysArchScore >= 10 && totalUXLeadScore >= 10) {
                 triggerMajorEvent();
             }
         }
@@ -231,15 +259,27 @@ let updatePhase2Scores = function(card) {
     getCardIndex(card);
     currentRound++;
 
+    const process = cardObj.cards[cardIndex].scoreValues["process"];
+    const team = cardObj.cards[cardIndex].scoreValues["team"];
+    const internal = cardObj.cards[cardIndex].scoreValues["internal"];
+    const external = cardObj.cards[cardIndex].scoreValues["external"];
+
     if (currentPhase === 2) {
-        techLeadP2Score += cardObj.cards[cardIndex].scoreValues["process"];
-        teamLeadP2Score += cardObj.cards[cardIndex].scoreValues["team"];
-        sysArchP2Score += cardObj.cards[cardIndex].scoreValues["internal"];
-        uxLeadP2Score += cardObj.cards[cardIndex].scoreValues["external"];
-        totalPhase2Score = techLeadP2Score + teamLeadP2Score + sysArchP2Score + uxLeadP2Score;
+        techLeadP2Score += process;
+        teamLeadP2Score += team;
+        sysArchP2Score += internal;
+        uxLeadP2Score += external;
+
+        totalTechLeadScore += process;
+        totalTeamLeadScore += team;
+        totalSysArchScore += internal;
+        totalUXLeadScore += external;
 
         setCurrentRound();
-        setCardWithITElement(card);
+
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
+        }
 
         if (teamLeadP2Score >= 10 && techLeadP2Score >= 10 && sysArchP2Score >= 10 && uxLeadP2Score >= 10) {
             triggerMajorEvent();
@@ -253,21 +293,41 @@ let updatePhase3Scores = function(card) {
     getCardIndex(card);
     currentRound++;
 
+    const process = cardObj.cards[cardIndex].scoreValues["process"];
+    const team = cardObj.cards[cardIndex].scoreValues["team"];
+    const internal = cardObj.cards[cardIndex].scoreValues["internal"];
+    const external = cardObj.cards[cardIndex].scoreValues["external"];
+
     if (currentPhase === 3) {
-        if (disclosedToBOD === 'yes' && noPointsCounted === 'yes') { // no points counted for one round
+        // no points are counted for one round when playing the DysTalk scenario and disclosing to board of directors in the major event
+        if (disclosedToBOD === 'yes' && noPointsCounted === 'yes') {
             techLeadP1Score += 0;
             teamLeadP1Score += 0;
             sysArchP1Score += 0;
             uxLeadP1Score += 0;
+
+            teamLeadApScore += 0;
+            techLeadApScore += 0;
+            sysArchApScore += 0;
+            uxLeadApScore += 0;
+
+            noPointsCounted = 'no';
         } else if ((disclosedToBOD === 'yes' && noPointsCounted === 'no') || disclosedToBOD === 'no') {
-            techLeadP3Score += cardObj.cards[cardIndex].scoreValues["process"];
-            teamLeadP3Score += cardObj.cards[cardIndex].scoreValues["team"];
-            sysArchP3Score += cardObj.cards[cardIndex].scoreValues["internal"];
-            uxLeadP3Score += cardObj.cards[cardIndex].scoreValues["external"];
-            totalPhase3Score = techLeadP3Score + teamLeadP3Score + sysArchP3Score + uxLeadP3Score;
+            techLeadP3Score += process;
+            teamLeadP3Score += team;
+            sysArchP3Score += internal;
+            uxLeadP3Score += external;
+
+            totalTechLeadScore += process;
+            totalTeamLeadScore += team;
+            totalSysArchScore += internal;
+            totalUXLeadScore += external;
 
             setCurrentRound();
-            setCardWithITElement(card);
+
+            if (cardWithITElement) {
+                intertemporalElement(cardWithITElement);
+            }
 
             if (teamLeadP3Score >= 10 && techLeadP3Score >= 10 && sysArchP3Score >= 10 && uxLeadP3Score >= 10) {
                 triggerMajorEvent();
@@ -305,11 +365,6 @@ let addScoresToGatePass = function() {
     document.getElementById('techl-header').innerHTML = `Process (${sessionStorage.getItem('Technical Lead')})`;
     document.getElementById('sa-header').innerHTML = `Internal (${sessionStorage.getItem('Systems Architect')})`;
     document.getElementById('ux-header').innerHTML = `External (${sessionStorage.getItem('UX Lead')})`;
-
-    document.getElementById('gs-tl-header').innerHTML = `Team (${sessionStorage.getItem('Team Lead')})`;
-    document.getElementById('gs-techl-header').innerHTML = `Process (${sessionStorage.getItem('Technical Lead')})`;
-    document.getElementById('gs-sa-header').innerHTML = `Internal (${sessionStorage.getItem('Systems Architect')})`;
-    document.getElementById('gs-ux-header').innerHTML = `External (${sessionStorage.getItem('UX Lead')})`;
 
     let currentTeamLeadScore = document.getElementById('current-team-lead-score');
     let currentTechLeadScore = document.getElementById('current-tech-lead-score');

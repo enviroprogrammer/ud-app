@@ -37,7 +37,7 @@ document.getElementById('scenarios').innerHTML = `
                 <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button></div>
             </ons-toolbar>
             <section style="text-align: center">
-                <h3>Choose your scenario:</h3>
+                <h2>Choose the <b>scenario</b> you wish to play:</h2>
                   <ons-list>
                     <ons-list-item onclick="toggleButtonState()" tappable>
                       <label class="left">
@@ -62,42 +62,33 @@ document.getElementById('scenarios').innerHTML = `
                     </ons-list-item>
                   </ons-list>
                   <div style="padding-top: 10px;">
-                    <ons-button id="scenario-desc">
-                        <ons-icon icon="ion-ios-information-circle, material:md-info" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
-                        Scenario Descriptions
-                    </ons-button>
-                  </div>
-                  <br/>
-                  <div>
                       <ons-button id="start" disabled>
                         <ons-icon icon="ion-ios-play, material:md-play" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
                         Start Game
                       </ons-button>
                   </div>
-                  
-<!--                <ons-fab position="bottom right" onclick="toggleMode()">-->
-<!--                    <ons-icon id="toggle" icon="fa-lightbulb" size="60px" style="vertical-align: middle"></ons-icon>-->
-<!--                </ons-fab>-->
+                  <br/>
+                  <div>
+                    <ons-button id="scenario-desc">
+                        <ons-icon icon="ion-ios-information-circle, material:md-info" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                        Scenario Descriptions
+                    </ons-button>
+                  </div>
             </section>
         </ons-page>
     </template>
     
     <template id="scenario-descriptions.html">
-        <ons-dialog id="scenario-descriptions">
-            <div style="text-align: center; padding: 10px">
-                <h3>Scenario Descriptions</h3>
-                <div style="display: inline-block">
+        <ons-alert-dialog id="scenario-descriptions">
+            <div class="alert-dialog-title" style="font-size: 23px !important;">Scenarios</div>
+            <div class="alert-dialog-content" style="font-size: 16px !important;">
                     <p><b>Angry Cats:</b> You work in a cross-functional team at a startup game studio, and you have just signed a contract with a notable publisher to develop and release a new game.</p>
-                    <br/>
                     <p><b>DysTalk:</b> You and your team have formed a startup to develop a secure communication and networking product.</p>
-                    <br/>
                     <p><b>Earthbook (new!):</b> Inspired by the influx of social media usage, especially for addressing environmental issues, you and a team of tech-savvy, eco-conscious folks have an idea for a new kind of social media where environmentalists can connect and uplift one another to make the environment better for generations to come.</p>
-                </div>
-                <ons-button id="close" onclick="hideScenarioDescriptions()">
-                    <ons-icon icon="ion-ios-close-circle, material:md-close-circle" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
-                    Close
-                </ons-button>
             </div>
-        </ons-dialog>
+            <div class="alert-dialog-footer">
+                <ons-alert-dialog-button onclick="hideScenarioDescriptions()">Back to Game</ons-alert-dialog-button>
+            </div>
+        </ons-alert-dialog>
     </template>
 `

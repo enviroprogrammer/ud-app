@@ -111,6 +111,19 @@ let resetRoles = function(){
     document.getElementById('reset-roles-confirmation').hide();
 }
 
+let showRoleDescriptions = function() {
+    let rd = document.getElementById('role-descriptions');
+
+    if (rd) {
+        rd.show();
+    } else {
+        ons.createElement('role-descriptions.html', { append: true })
+            .then(function(dialog) {
+                dialog.show();
+            })
+    }
+}
+
 let hideRoleDescriptions = function() {
     let rd = document.getElementById('role-descriptions');
 
@@ -127,19 +140,19 @@ document.getElementById('roles').innerHTML = `
             <div class="center">Assign Roles</div>
             <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
-          <section style="text-align: center">
-            <h2>Assign roles to each player:</h2>
+          <section style="text-align: center; padding: 10px; margin-left: 15px; margin-right: 15px"">
+            <h2>Assign <b>roles</b> to each player,<br/>either by <b>rolling the dice and randomly assigning roles</b> or <b>deliberating as a group.</b></h2>
+            <h3><i><b>Note:</b> All players must be assigned a role to proceed to the next step.</i></h3>
             <div style="align-items: center;">
                 <p id="p1-name"></p>
-                <p>
-                    <ons-select id="p1-role" onchange="saveP1Role()">
-                        <option value="" disabled selected>Choose a role...</option>
-                        <option value="sys-arch">Systems Architect</option>
-                        <option value="ux-lead">UX Lead</option>
-                        <option value="tech-lead">Technical Lead</option>
-                        <option value="team-lead">Team Lead</option>
-                    </ons-select>
-                </p>
+                <ons-select id="p1-role" onchange="saveP1Role()">
+                    <option value="" disabled selected>Choose a role...</option>
+                    <option value="sys-arch">Systems Architect</option>
+                    <option value="ux-lead">UX Lead</option>
+                    <option value="tech-lead">Technical Lead</option>
+                    <option value="team-lead">Team Lead</option>
+                </ons-select>
+                <br/><br/>
                 <p id="p2-name"></p>
                 <ons-select id="p2-role" onchange="saveP2Role()">
                     <option value="" disabled selected>Choose a role...</option>
@@ -148,6 +161,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="tech-lead">Technical Lead</option>
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
+                <br/><br/>
                 <p id="p3-name"></p>
                 <ons-select id="p3-role" onchange="saveP3Role()">
                     <option value="" disabled selected>Choose a role...</option>
@@ -156,6 +170,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="tech-lead">Technical Lead</option>
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
+                <br/><br/>
                 <p id="p4-name"></p>
                 <ons-select id="p4-role" onchange="saveP4Role()">
                     <option value="" disabled selected>Choose a role...</option>
@@ -165,7 +180,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
             </div>
-            <br/>
+            <br/><br/>
             <div>
                 <ons-button id="choose-scenario" disabled>
                     <ons-icon icon="ion-ios-film, material:md-movie" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
@@ -174,7 +189,7 @@ document.getElementById('roles').innerHTML = `
             </div>
             <br/>
             <div>
-                <ons-button id="role-desc">
+                <ons-button id="role-desc" onclick="showRoleDescriptions()">
                     <ons-icon icon="ion-ios-information-circle, material:md-info" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
                     Role Descriptions
                 </ons-button>
@@ -186,30 +201,38 @@ document.getElementById('roles').innerHTML = `
                     Restart Role Selection
                 </ons-button>
             </div>
-            
-<!--              <ons-fab position="bottom right" onclick="toggleMode()">-->
-<!--                <ons-icon id="toggle" icon="fa-lightbulb" size="60px" style="vertical-align: middle"></ons-icon>-->
-<!--              </ons-fab>-->
           </section>
         </ons-page>
     </template>
     
     <template id="role-descriptions.html">
-        <ons-dialog id="role-descriptions">
-            <div style="text-align: center; padding: 10px">
-                <h3>Roles</h3>
-                <div style="display: inline-block">
-                    <p><b>Systems Architect:</b> focuses on internal quality</p>
-                    <p><b>UX Lead:</b> focuses on external quality</p>
-                    <p><b>Technical Lead:</b> focuses on process quality</p>
-                    <p><b>Team Lead:</b> focuses on team strength</p>
-                </div>
-                <ons-button id="close" onclick="hideRoleDescriptions()">
-                    <ons-icon icon="ion-ios-close-circle, material:md-close-circle" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
-                    Close
-                </ons-button>
+        <ons-alert-dialog id="role-descriptions" modifier="rowfooter">
+<!--            <div style="text-align: center; padding: 10px">-->
+<!--                <h3>Roles</h3>-->
+<!--                <div style="display: inline-block">-->
+<!--                    <p><b>Systems Architect:</b> focuses on internal quality</p>-->
+<!--                    <p><b>UX Lead:</b> focuses on external quality</p>-->
+<!--                    <p><b>Technical Lead:</b> focuses on process quality</p>-->
+<!--                    <p><b>Team Lead:</b> focuses on team strength</p>-->
+<!--                </div>-->
+<!--                <div style="margin-top: 10px">-->
+<!--                    <ons-button id="close" onclick="hideRoleDescriptions()">-->
+<!--                        <ons-icon icon="ion-ios-close-circle, material:md-close-circle" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>-->
+<!--                        Close-->
+<!--                    </ons-button>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="alert-dialog-title" style="font-size: 23px !important;">Roles</div>
+            <div class="alert-dialog-content" style="font-size: 16px !important;">
+                    <p><b>Systems Architect:</b> responsible for <b>gathering system requirements</b> and defining the <b>system architecture</b> that fulfills these requirements.<br/>Focuses on <b>internal</b> quality.</p>
+                    <p><b>UX Lead:</b> ensure that users who interact with the system have a <b>positive experience</b><br/>Focuses on <b>external</b> quality.</p>
+                    <p><b>Technical Lead:</b> the principal <b>software engineer</b> who leads the <b>development team</b>, uses a <b>hands-on</b> approach with code, and handles the <b>quality of technical deliverables</b><br/>Focuses on <b>process</b> quality.</p>
+                    <p><b>Team Lead:</b> keeps the team <b>on schedule</b> and <b>in line</b>, meaning that if the team underperforms, the team lead takes a severe hit<br/>Focuses on <b>team</b> quality.</p>
             </div>
-        </ons-dialog>
+            <div class="alert-dialog-footer">
+                <ons-alert-dialog-button onclick="hideRoleDescriptions()">Back to Game</ons-alert-dialog-button>
+            </div>
+        </ons-alert-dialog>
     </template>
     
     <template id="reset-roles-confirmation.html">

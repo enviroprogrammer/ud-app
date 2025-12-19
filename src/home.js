@@ -9,29 +9,25 @@ document.getElementById('home').innerHTML = `
    <template id="home.html">
        <ons-page id="homepage">
           <ons-toolbar>
-            <div class="center">Undecided?</div>
-            <div class="right">
-                <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button>
-<!--                <ons-toolbar-button><ons-icon id="toggle" icon="ion-ios-moon, material:md-brightness-2" onclick="toggleMode()"></ons-icon></ons-toolbar-button>-->
+            <div class="center" tabindex="0">Undecided?</div>
+            <div class="right" tabindex="0">
+                <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px" aria-label="toggle between light and dark mode"></ons-icon></ons-toolbar-button>
             </div>
           </ons-toolbar>
           <section style="text-align: center; padding: 10px">
-            <h1>Welcome to the companion app for <i>Undecided?</i></h1>
-            <p style="font-size: 20px; margin-top: 3px;">Say goodbye to using Excel spreadsheets to moderate the game <span role="img" aria-label="wave">👋</span></p>
-            <div>
-              <ons-button id="new-game"><ons-icon icon="fa-puzzle-piece" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon>New Game</ons-button>
+            <h1 tabindex="0">Welcome to the companion app for <i>Undecided?</i></h1>
+            <p style="font-size: 20px; margin-top: 3px;" tabindex="0">Say goodbye to using spreadsheets to moderate the game <span role="img" aria-label="wave">👋</span></p>
+            <div tabindex="0">
+              <ons-button id="new-game"><ons-icon icon="fa-puzzle-piece" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon aria-label="New Game">New Game</ons-button>
             </div>
             <br/>
-            <div>
-              <ons-button id="about"><ons-icon icon="ion-ios-help-circle, material:md-help" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon>About</ons-button>
+            <div tabindex="0">
+              <ons-button id="about"><ons-icon icon="ion-ios-help-circle, material:md-help" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon aria-label="About">About</ons-button>
             </div>
             <br/>
-            <div>
-                <ons-button id="report-a-bug" onclick="ons.notification.alert('Bug reporting coming soon!')"><ons-icon icon="ion-ios-bug, material:md-bug" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon>Report a Bug</ons-button>
+            <div tabindex="0">
+                <ons-button id="report-a-bug" onclick="ons.notification.alert('Bug reporting coming soon!')"><ons-icon icon="ion-ios-bug, material:md-bug" size="25px" style="padding-right: 5px; vertical-align: middle"></ons-icon aria-label="Report a Bug">Report a Bug</ons-button>
             </div>
-<!--              <ons-fab position="bottom right" onclick="toggleMode()">-->
-<!--                <ons-icon id="toggle" icon="fa-lightbulb" size="60px" style="vertical-align: middle"></ons-icon>-->
-<!--              </ons-fab>-->
           </section>
        </ons-page>
    </template>
@@ -58,21 +54,6 @@ document.addEventListener('init', function(event) {
         }
     } else if (page.id === 'roles') {
         loadPlayerNames();
-
-        // in case users would like to be reminded of what each role means
-        page.querySelector('#role-desc').onclick = function () {
-            let rd = document.getElementById('role-descriptions');
-
-            if (rd) {
-                rd.show();
-            } else {
-                ons.createElement('role-descriptions.html', { append: true })
-                    .then(function(dialog) {
-                        dialog.show();
-                    })
-            }
-        }
-
         page.querySelector('#choose-scenario').onclick = function() {
             document.querySelector('#navigator').pushPage('scenarios.html', {data: {title: 'Scenarios'}});
         };

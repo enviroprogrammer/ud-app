@@ -9,16 +9,16 @@ let roleRelatedBonuses = function(card) {
     // increase AP score of a certain role by 1 if the card has added benefits to that role
     if (cardObj.cards[cardIndex].scoreValues["team"] > 5) { // team lead benefits from teamwide learning and growth
         teamLeadApScore++;
-        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+        totalApScore++;
     } else if (cardObj.cards[cardIndex].scoreValues["process"] > 5) { // tech lead benefits when process is considered
         techLeadApScore++;
-        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+        totalApScore++;
     } else if (cardObj.cards[cardIndex].scoreValues["internal"] > 5) { // sys arch benefits from working efficiently and having a good internal structure
         sysArchApScore++;
-        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+        totalApScore++;
     } else if (cardObj.cards[cardIndex].scoreValues["external"] > 5) { // ux lead's hard work pays off
         uxLeadApScore++;
-        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+        totalApScore++;
     }
 }
 
@@ -27,24 +27,42 @@ let roleApPointsByCard = function(card) {
     switch (card) {
         case 'Education Workshop':
             teamLeadApScore += 2;
-            totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+            totalApScore += 2;
             break;
-        case ('Requirements Workshop A' || 'Requirements Workshop B'):
+        case 'Requirements Workshop A':
+        case 'Requirements Workshop B':
             uxLeadApScore += 2;
-            totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+            totalApScore += 2;
             break;
-        case ('Github Day A' || 'Github Day B'):
+        case 'Github Day A':
+        case 'Github Day B':
             techLeadApScore += 2;
-            totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+            totalApScore += 2;
             break;
-        case ('Test Automation A' || 'Test Automation B'):
+        case 'Test Automation A':
+        case 'Test Automation B':
             techLeadApScore += 2;
-            totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+            totalApScore += 2;
             break;
-        case ('Refactor A' || 'Refactor B'):
+        case 'Refactor A':
+        case 'Refactor B':
             sysArchApScore -= 2;
-            totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+            totalApScore += 2;
             break;
+        case 'Mentorship A':
+        case 'Mentorship B':
+            teamLeadApScore++;
+            totalApScore++;
+            break;
+        case 'Feature Development A':
+        case 'Feature Development B':
+            uxLeadApScore++;
+            totalApScore++;
+        case 'Test-Driven Development A':
+        case 'Test-Driven Development B':
+            sysArchApScore++;
+            totalApScore++;
+
     }
 }
 
@@ -76,5 +94,22 @@ let phase3RoleAP = function() {
     if (usCardPlayedInP3) {
         uxLeadApScore += 2;
         totalApScore += 2;
+    }
+}
+
+// call this function if the tech lead plays 2 all nighter cards or 2 development cards in a row
+let twoInARow = function() {
+    // 2 all nighter cards in a row: lose 8 AP points when the second card is laid
+    if ((playedCards.at(-1) === 'Pull All Nighter A' && playedCards.at(-2) === 'Pull All Nighter B') || (playedCards.at(-1) === 'Pull All Nighter B' && playedCards.at(-2) === 'Pull All Nighter A')) {
+        techLeadApScore -= 8;
+        totalApScore -= 8;
+    // 2 dev cards in a row (test-driven development/development): gain 4 action points; the effect stacks for each subsequent card laid
+    } else if (playedCards.at(-1) === 'Development A' || playedCards.at(-1) === 'Development B' || playedCards.at(-1) === 'Test-Driven Development A' || playedCards.at(-1) === 'Test-Driven Development B') {
+        techLeadApScore += 4;
+        totalApScore += 4;
+        if (playedCards.at(-2) === 'Development A' || playedCards.at(-2) === 'Development B' || playedCards.at(-2) === 'Test-Driven Development A' || playedCards.at(-2) === 'Test-Driven Development B') {
+            techLeadApScore += 4;
+            totalApScore += 4;
+        }
     }
 }

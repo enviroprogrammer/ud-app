@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
     <link rel="icon" type="image/png" href="public/favicon.png" />
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="./onsen-css-components.css" id="theme">
@@ -22,13 +23,32 @@
     <script type="text/javascript" src="/ud-app/src/card-rolls.js"></script>
     <script type="text/javascript" src="/ud-app/src/play-card.js"></script>
     <script type="text/javascript" src="/ud-app/src/role-cards.js"></script>
-      <script>
+    <script type="text/javascript" src="/ud-app/src/scenario-cards.js"></script>
+
+    <!-- for testing locally -->
+<!--    <script type="text/javascript" src="/src/cards.js"></script>-->
+<!--    <script type="text/javascript" src="/src/game-logic.js"></script>-->
+<!--    <script type="text/javascript" src="/src/qr-code-scanner.js"></script>-->
+<!--    <script type="text/javascript" src="/src/blank-cards.js"></script>-->
+<!--    <script type="text/javascript" src="/src/major-events.js"></script>-->
+<!--    <script type="text/javascript" src="/src/light-dark-toggle.js"></script>-->
+<!--    <script type="text/javascript" src="/src/gate-conditions.js"></script>-->
+<!--    <script type="text/javascript" src="/src/gate-pass.js"></script>-->
+<!--    <script type="text/javascript" src="/src/future-effects.js"></script>-->
+<!--    <script type="text/javascript" src="/src/intertemporal-element.js"></script>-->
+<!--    <script type="text/javascript" src="/src/card-rolls.js"></script>-->
+<!--    <script type="text/javascript" src="/src/play-card.js"></script>-->
+<!--    <script type="text/javascript" src="/src/role-cards.js"></script>-->
+<!--    <script type="text/javascript" src="/src/scenario-cards.js"></script>-->
+
+    <script>
           if('serviceWorker' in navigator) {
               navigator.serviceWorker.register('/ud-app/sw.js')
                   .then(() => console.log("Service Worker Registered"))
                   .catch(e => console.log(e));
           }
     </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Undecided? Companion App</title>
   </head>
@@ -61,6 +81,35 @@
       <div id="about">
         <script type="text/javascript" src="/ud-app/src/about.js"></script>
       </div>
+
+        <!-- for testing locally -->
+<!--        <div id="home">-->
+<!--            <script type="text/javascript" src="/src/home.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="players">-->
+<!--            <script type="text/javascript" src="/src/players.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="roles">-->
+<!--            <script type="text/javascript" src="/src/roles.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="scenarios">-->
+<!--            <script type="text/javascript" src="/src/scenarios.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="scorecard">-->
+<!--            <script type="text/javascript" src="/src/scoreboard.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="how-to-play">-->
+<!--            <script type="text/javascript" src="/src/how-to-play.js"></script>-->
+<!--        </div>-->
+
+<!--        <div id="about">-->
+<!--            <script type="text/javascript" src="/src/about.js"></script>-->
+<!--        </div>-->
     </div>
   </body>
 </html>

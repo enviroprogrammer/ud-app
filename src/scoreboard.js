@@ -52,6 +52,11 @@ let resetScoreboard = function() {
     uxLeadP2Score = 0;
     uxLeadP3Score = 0;
 
+    totalTechLeadScore = 0;
+    totalTeamLeadScore = 0;
+    totalUXLeadScore = 0;
+    totalSysArchScore = 0;
+
     teamLeadApScore = 4;
     techLeadApScore = 0;
     sysArchApScore = 0;
@@ -62,10 +67,6 @@ let resetScoreboard = function() {
     techLeadBlank = 0;
     sysArchBlank = 0;
     uxLeadBlank = 0;
-
-    totalPhase1Score = 0;
-    totalPhase2Score = 0;
-    totalPhase3Score = 0;
 
     currentPhase = 1;
     sessionStorage.setItem('Phase', currentPhase);
@@ -80,6 +81,8 @@ let resetScoreboard = function() {
     futureEffectTriggered = 'no';
     noPointsCounted = 'no';
     disclosedToBOD = 'no';
+    cardWithITElement = '';
+    ieCounter = 0;
 
     const ad = document.getElementById('addiction');
     const dl = document.getElementById('data-leak');
@@ -150,25 +153,22 @@ let hideReturnHomeDialog = function() {
 // toggle facilitator mode on and off so that the facilitator can only see the scores
 let facilitatorToggle = function () {
     const ft = document.getElementById('facilitator-toggle');
-    const tables = document.getElementById('tables');
+    const teamScores = document.getElementById('team-scores');
     const reset = document.getElementById('reset');
     const changeScenario = document.getElementById('change-scenario');
-    const gatePass = document.getElementById('gate-pass');
     const returnHome = document.getElementById('return-home');
 
     if (ft.checked) { // facilitator mode on
         facilitatorModeOn = true;
-        tables.style.display = 'block';
+        teamScores.style.display = 'block'; // show team scores
         reset.disabled = false;
         changeScenario.disabled = false;
-        gatePass.disabled = false;
         returnHome.disabled = false;
     } else { // facilitator mode off
         facilitatorModeOn = false;
-        tables.style.display = 'none';
+        teamScores.style.display = 'none'; // hide team scores; these are meant to be viewed by the facilitator only
         reset.disabled = true;
         changeScenario.disabled = true;
-        gatePass.disabled = true;
         returnHome.disabled = true;
     }
 }
@@ -196,7 +196,7 @@ document.getElementById('scorecard').innerHTML = `
                     <h1 id="current-player"></h1>
                     <br/><br/>
                 </div>
-                <div id="tables" style="display: none;">
+                <div id="team-scores" style="display: none;">
                     <h2>Team Scores</h2>
                     <table id="team-scorecard-table" style="width: 100%;">
                         <tr id="team-headers">
@@ -205,7 +205,6 @@ document.getElementById('scorecard').innerHTML = `
                             <th id="process"></th>
                             <th id="internal"></th>
                             <th id="external"></th>
-                            <th>Total</th>
                         </tr>
                         <tr id="p1-team-scores">
                             <td id="phase-1">1</td>
@@ -213,7 +212,6 @@ document.getElementById('scorecard').innerHTML = `
                             <td id="tech-lead-phase-1"></td>
                             <td id="sys-arch-phase-1"></td>
                             <td id="ux-lead-phase-1"></td>
-                            <td id="total-phase-1"></td>
                         </tr>
                         <tr id="p2-team-scores">
                             <td id="phase-2">2</td>
@@ -221,7 +219,6 @@ document.getElementById('scorecard').innerHTML = `
                             <td id="tech-lead-phase-2"></td>
                             <td id="sys-arch-phase-2"></td>
                             <td id="ux-lead-phase-2"></td>
-                            <td id="total-phase-2"></td>
                         </tr>
                         <tr id="p3-team-scores">
                             <td id="phase-3">3</td>
@@ -229,10 +226,17 @@ document.getElementById('scorecard').innerHTML = `
                             <td id="tech-lead-phase-3"></td>
                             <td id="sys-arch-phase-3"></td>
                             <td id="ux-lead-phase-3"></td>
-                            <td id="total-phase-3"></td>
+                        </tr>
+                        <tr id="total-role-scores">
+                            <td id="role-totals">Total</td>
+                            <td id="team-lead-total"></td>
+                            <td id="tech-lead-total"></td>
+                            <td id="sys-arch-total"></td>
+                            <td id="ux-lead-total"></td>
                         </tr>
                     </table>
-                                    <div style="padding: 10px;">
+                </div>
+                <div id="ap-points" style="padding: 10px;">
                     <h2>Individual Action Points</h2>
                     <table id="ap-scorecard-table" style="width: 100%;">
                         <tr id="ap-headers">
@@ -251,24 +255,6 @@ document.getElementById('scorecard').innerHTML = `
                         </tr>
                     </table>
                 </div>
-                <div style="padding: 10px;">
-                    <h2>Blank Cards</h2>
-                    <table id="blank-scorecard-table" style="width: 100%;">
-                        <tr id="blank-headers">
-                            <th id="team-lead-blank"></th>
-                            <th id="tech-lead-blank"></th>
-                            <th id="sys-arch-blank"></th>
-                            <th id="ux-lead-blank"></th>
-                        </tr>
-                        <tr id="blank-cards">
-                            <td id="team-lead-blank-score"></td>
-                            <td id="tech-lead-blank-score"></td>
-                            <td id="sys-arch-blank-score"></td>
-                            <td id="ux-lead-blank-score"></td>
-                        </tr>
-                    </table>
-                </div>
-                </div>
                 <div id="buttons">
                 <br/>
                     <div><ons-button id="scan-qr" onclick="showScannerDialog()">
@@ -286,7 +272,7 @@ document.getElementById('scorecard').innerHTML = `
                         Change Scenario
                     </ons-button></div>
                     <br/>
-                    <div><ons-button id="gate-pass" onclick="gatePass()" disabled>
+                    <div><ons-button id="gate-pass" onclick="gatePass()">
                         <ons-icon icon="fa-ticket" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                         Gate Pass
                     </ons-button></div>
@@ -335,7 +321,7 @@ document.getElementById('scorecard').innerHTML = `
     <template id="addiction.html">
        <ons-dialog id="addiction">
         <div style="text-align: center; padding: 10px; height: 70vh; overflow-y: auto">
-            <h3>Addiction!</h3>
+            <h3>Addiction! 🎮</h3>
             <p>Digital productivity critics found out about <i>Angry Cats</i> and have started to voice their concerns about the game. They argue that games like <i>Angry Cats</i> promote mobile gaming addiction and technological dependence, leading to mixed media attention. Your team must decide how to proceed after hearing about this.</p>
             <div style="text-align: center; padding: 10px;">
                 <b>Choose from one of the following options:</b>
@@ -361,7 +347,7 @@ document.getElementById('scorecard').innerHTML = `
     <template id="data-leak.html">
         <ons-dialog id="data-leak">
             <div style="text-align: center; padding: 10px; height: 70vh; overflow-y: auto">
-                <h3>Data Leak</h3>
+                <h3>Data Leak 🔓</h3>
                 <p>Despite making great progress on starting <i>DysTalk</i>, a data leak has just occurred. Your competitors hired a security consultant to gain access to your system and, ultimately, <i>DysTalk</i>'s data. Luckily, not much user data has been collected, and not a lot has been built yet, but some chat content has been leaked from test sessions. Your team can still pick up where you left off, but with some small hits.</p>
                 <div style="text-align: center; padding: 10px;">
                     <b>Choose one of the following 3 options:</b>
@@ -388,25 +374,25 @@ document.getElementById('scorecard').innerHTML = `
     <template id="venture-capitalism.html">
         <ons-dialog id="venture-capitalism">
             <div style="text-align: center; padding: 10px; height: 70vh; overflow-y: auto">
-                <h3>Venture Capital(ism)</h3>
+                <h3>Venture Capital(ism) 🤑</h3>
                 <p><i>Earthbook</i> circulates around well-known venture capital (VC) firms who are very receptive to the idea. Pre-seed venture capitalists firmly believe that <i>Earthbook</i> has massive growth potential. To fuel their constant desire to maximize profit in a capitalist society, they offer to invest in <i>Earthbook</i>, expand their portfolio, and transform it from a simple idea into a business plan. Your team must decide on how to proceed.</p>
                 <br/><br/>
                 <div style="text-align: center; padding: 10px;">
                     <b>Choose one of the following 3 options:</b>
                     <p><b>Accept VC offer:</b> You view this as an opportunity for <i>Earthbook</i>'s growth. You will lose creative control over <i>Earthbook</i>, but you'll receive mentorship and funding from venture capitalists.</p>
-                    <p><b>Reject VC offer:</b> The offer sounds promising, but you'd rather have <i>Earthbook</i> supported by donations instead of turn it into a VC-backed company for profit.</p>
-                    <p><b>Become coop:</b> Because Earthbook thrives on sustainability. Sustainability heavily prides itself on cutting down on energy and resource consumption to prioritize human wellbeing over profit within planetary boundaries. This is also known as <b>degrowth</b>. As a result, you decide to turn Earthbook into a coop.</p>
+                    <p><b>Reject offer and continue:</b> The offer sounds promising, but you'd rather have <i>Earthbook</i> supported by donations instead of turn it into a VC-backed company for profit.</p>
+                    <p><b>Reject offer and become coop:</b> Because Earthbook thrives on sustainability, which in turn thrives on degrowth, you decide to turn <i>Earthbook</i> into a coop in favour of a just, sustainable economy that places human wellbeing over profit. Sustainability heavily prides itself on cutting down on energy and resource consumption to prioritize human wellbeing over profit within planetary boundaries. This is also known as <b>degrowth</b>. As a result, you decide to turn Earthbook into a coop.</p>
                     <br/><br/>
                     <div>
                         <ons-button id="accept-vc" onclick="acceptVcOffer()">Accept VC offer</ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="reject-continue" onclick="rejectContinue()">Reject VC offer</ons-button>
+                        <ons-button id="reject-continue" onclick="rejectContinue()">Reject offer and continue</ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="reject-coop" onclick="rejectFormCoop()">Become coop</ons-button>
+                        <ons-button id="reject-coop" onclick="rejectFormCoop()">Reject offer and become coop</ons-button>
                     </div>
                 </div>
             </div>
@@ -417,7 +403,7 @@ document.getElementById('scorecard').innerHTML = `
        <ons-dialog id="blank-card-dialog">
         <div style="text-align: center; padding: 10px;">
             <h3>How would you like to distribute points?</h3>
-            <b>Note: Points must add up to the sum of the total action points.</b>
+            <i><b>Note:</b> Distributed points must add up to the <b>sum of the total action points.</b></i>
             <div style="display: flex; flex-direction: row">
                 <div style="display: flex; align-items: center; flex-direction: column;">
                     <p><b>Action Points Per Player</b></p>
@@ -432,13 +418,13 @@ document.getElementById('scorecard').innerHTML = `
                 </div>
                 <div style="display: flex; align-items: center; flex-direction: column; justify-content: space-between">
                     <p><b>Point Distribution</b></p>
-                    <label for="bc-team-lead">Team Lead: </label><input type="number" name="bc-points" id="bc-team-lead" value="0" min="0" max="100">
+                    <label for="bc-team-lead"></label><input type="number" style="font-size: 16px;" name="bc-points" id="bc-team-lead" value="0" min="0" max="100">
                     <br/>
-                    <label for="bc-tech-lead">Tech Lead: </label><input type="number" name="bc-points" id="bc-tech-lead" value="0" min="0" max="100">
+                    <label for="bc-tech-lead">${sessionStorage.getItem('Technical Lead')}: </label><input type="number" style="font-size: 16px;" name="bc-points" id="bc-tech-lead" value="0" min="0" max="100">
                     <br/>
-                    <label for="bc-sys-arch">Systems Architect: </label><input type="number" name="bc-points" id="bc-sys-arch" value="0" min="0" max="100">
+                    <label for="bc-sys-arch">${sessionStorage.getItem('Systems Architect')}: </label><input type="number" style="font-size: 16px;" name="bc-points" id="bc-sys-arch" value="0" min="0" max="100">
                     <br/>
-                    <label for="bc-ux-lead">UX Lead: </label><input type="number" name="bc-points" id="bc-ux-lead" value="0" min="0" max="100">
+                    <label for="bc-ux-lead">${sessionStorage.getItem('UX Lead')}: </label><input type="number" style="font-size: 16px;" name="bc-points" id="bc-ux-lead" value="0" min="0" max="100">
                 </div>
             </div>
 
@@ -453,22 +439,23 @@ document.getElementById('scorecard').innerHTML = `
     <template id="milestone-review.html">
         <ons-dialog id="milestone-review">
             <div style="text-align: center; padding: 10px;">
-                <h3>Vote on the best narrative!</h3>
+                <h3>Milestone Review</h3>
+                <p><i><b>Instructions:</b> Have players go clockwise around the table and craft a narrative about everything they had done until reaching the gate. After everyone has finished telling their narratives, begin voting by asking everyone who they thought had the best narrative. With their eyes closed, players will put up their hands to vote. Use the input boxes below to record the number of hands (votes) for each participant.</i></p>
                 <div id="votes" style="display: flex; flex-direction: column; align-items: center">
                     <div style="display: flex; flex-direction: row">
-                        <label for="team-lead"></label><input type="number" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
+                        <label for="team-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
     
                     <div style="display: flex; flex-direction: row">
-                        <label for="tech-lead"></label><input type="number" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
+                        <label for="tech-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
                     
                     <div style="display: flex; flex-direction: row">
-                        <label for="sys-arch"></label><input type="number" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
+                        <label for="sys-arch"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
                     
                     <div style="display: flex; flex-direction: row">
-                        <label for="ux-lead"></label><input type="number" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
+                        <label for="ux-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
                     <div style="padding-top: 10px">
                         <ons-button onclick="showWinner()">
@@ -502,10 +489,10 @@ document.getElementById('scorecard').innerHTML = `
     <template id="gate-check.html">
         <ons-dialog id="gate-check">
             <div style="text-align: center; padding: 10px;">
-                <h3>Team Scores:</h3>
-                <br/>
+                <h2>Gate Pass</h2>
                 <div style="font-size: 18px"><i><b>Note to facilitator:</b> reveal both team and gate scores and let the team know whether they've passed the gate.</i></div>
                 <br/>
+                <h3>Team Scores:</h3>
                 <table id="team-scores" style="width: 100%;">
                     <tr>
                         <th id="tl-header"></th>
@@ -525,10 +512,10 @@ document.getElementById('scorecard').innerHTML = `
                     <h3>Gate Scores:</h3>
                     <br/>
                         <tr>
-                            <th id="gs-tl-header"></th>
-                            <th id="gs-techl-header"></th>
-                            <th id="gs-sa-header"></th>
-                            <th id="gs-ux-header"></th>
+                            <th id="gs-tl-header">Team</th>
+                            <th id="gs-techl-header">Process</th>
+                            <th id="gs-sa-header">Internal</th>
+                            <th id="gs-ux-header">External</th>
                         </tr>
                         <tr>
                             <td id="team-lead-gate-score"></td>
@@ -572,7 +559,7 @@ document.getElementById('scorecard').innerHTML = `
         </ons-alert-dialog>
     </template>
     
-    <-- new staff card: dystalk version -->
+    <!-- new staff card: dystalk version -->
     <template id="dt-new-staff.html">
         <ons-dialog id="dt-new-staff">
             <div style="text-align: center; padding: 10px;">
@@ -584,7 +571,7 @@ document.getElementById('scorecard').innerHTML = `
         </ons-dialog>
     </template>
     
-    <-- new staff card: angry cats version -->
+    <!-- new staff card: angry cats version -->
     <template id="ac-new-staff.html">
         <ons-dialog id="ac-new-staff">
             <div style="text-align: center; padding: 10px;">
@@ -599,7 +586,7 @@ document.getElementById('scorecard').innerHTML = `
     <template id="comp-commotion-a.html">
         <ons-dialog id="comp-commotion-a">
             <div style="text-align: center; padding: 10px;">
-                <h4>Roll the dice to determine if you will lose your teammate to your competitor.</h4>
+                <h4>Roll the dice to determine if you will lose your teammate to your competitor (or not).</h4>
                 <br/>
                 <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
                 <br/>
@@ -623,7 +610,9 @@ document.getElementById('scorecard').innerHTML = `
             <div class="alert-dialog-title">Return Home</div>
             <div class="alert-dialog-content">Are you sure you want to return to the homepage? Doing so will erase all game data.</div>
             <div class="alert-dialog-footer">
-                <ons-alert-dialog-button id="yes-home" onclick="window.location.href = '/ud-app/'">Yes</ons-alert-dialog-button>
+<!--                <ons-alert-dialog-button id="yes-home" onclick="window.location.href = '/ud-app/'">Yes</ons-alert-dialog-button>-->
+                    <!-- for testing locally -->
+                <ons-alert-dialog-button id="yes-home" onclick="window.location.href = '/'">Yes</ons-alert-dialog-button>
                 <ons-alert-dialog-button id="no-home" style="color: red" onclick="hideReturnHomeDialog()">No</ons-alert-dialog-button>
             </div>
         </ons-alert-dialog>

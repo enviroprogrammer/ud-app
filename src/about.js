@@ -22,11 +22,15 @@ document.getElementById('about').innerHTML = `
             <br/>
             <h2>Role Descriptions</h2>
             <div style="margin-left: 15px; margin-right: 15px; font-size: 18px">
-                <p>Teams have the following <b>4 roles</b>. Each role focuses on a particular <b>dimension</b> of the <b>project</b> from the selected scenario.</p>
-                <p><b>Systems Architect:</b> focuses on the <b>internal</b> quality</p>
-                <p><b>UX Lead:</b> focuses on the <b>external</b> quality</p>
-                <p><b>Technical Lead:</b> focuses on the <b>process</b> quality</p>
-                <p><b>Team Lead:</b> focuses on the <b>team strength</b></p>
+                <p>Teams have the following <b>4 roles</b>. Each role has a set of <b>responsibilities</b> and focuses on a particular <b>dimension</b> of the <b>project</b> from the selected scenario.</p>
+<!--                <p><b>Systems Architect:</b> focuses on the <b>internal</b> quality</p>-->
+<!--                <p><b>UX Lead:</b> focuses on the <b>external</b> quality</p>-->
+<!--                <p><b>Technical Lead:</b> focuses on the <b>process</b> quality</p>-->
+<!--                <p><b>Team Lead:</b> focuses on the <b>team strength</b></p>-->
+                    <p><b>Systems Architect:</b> responsible for <b>gathering system requirements</b> and defining the <b>system architecture</b> that fulfills these requirements.<br/>Focuses on <b>internal</b> quality.</p>
+                    <p><b>UX Lead:</b> ensure that users who interact with the system have a <b>positive experience</b><br/>Focuses on <b>external</b> quality.</p>
+                    <p><b>Technical Lead:</b> the principal <b>software engineer</b> who leads the <b>development team</b>, uses a <b>hands-on</b> approach with code, and handles the <b>quality of technical deliverables</b><br/>Focuses on <b>process</b> quality.</p>
+                    <p><b>Team Lead:</b> keeps the team <b>on schedule</b> and <b>in line</b>, meaning that if the team underperforms, the team lead takes a severe hit<br/>Focuses on <b>team</b> quality.</p>
             </div>
             <br/>
             <h2>Scenarios</h2>
@@ -40,10 +44,6 @@ document.getElementById('about').innerHTML = `
                     <li><b>Earthbook (new!):</b> Inspired by the influx of social media usage, especially for addressing environmental issues, you and a team of tech-savvy, eco-conscious folks have an idea for a new kind of social media where environmentalists can connect and uplift one another to make the environment better for generations to come.</li>
                 </ol>
             </div>
-            
-<!--              <ons-fab position="bottom right">-->
-<!--                <ons-icon id="toggle" icon="ion-ios-moon, material:md-brightness-2" size="60px" style="vertical-align: middle" onclick="toggleMode()"></ons-icon>-->
-<!--              </ons-fab>-->
           </section>
         </ons-page>
     </template>

@@ -13,11 +13,21 @@ let gameOver = function() {
     if (majorEventOption === 'Invest in addiction increase' || majorEventOption === 'INVEST IN ADDICTION INCREASE') {
         ons.notification.alert("Someone has leaked the details surrounding these deals and the public finds out about your evil deed. Your company image is completely tarnished to the public. Your board of directors denies responsibility, the team lead gets fired, the rest of the team disbands in shame. Never shall you talk about what you’ve done. This game never happened. <b>Game over.</b>")
             .then(() => {
+                if (cardWithITElement) {
+                    intertemporalElement(cardWithITElement);
+                }
+            })
+            .then(() => {
                 document.getElementById('scan-qr').disabled = true;
             });
 
     } else if (majorEventOption === 'Cover up leak' || majorEventOption === 'COVER UP LEAK') {
         ons.notification.alert("By covering up the leak yourselves, you choose to keep knowledge of the leak within the team itself. By not informing higher-ups or the public, you don’t lose anything in the short term- but you still must put in the work to ensure the leak is fixed before anyone finds out. This is a band-aid solution, and might come back to haunt you in the future. <b>Game over.</b>")
+            .then(() => {
+                if (cardWithITElement) {
+                    intertemporalElement(cardWithITElement);
+                }
+            })
             .then(() => {
                 document.getElementById('scan-qr').disabled = true;
             });
@@ -33,13 +43,7 @@ let addiction = function(){
     } else {
         ons.createElement('addiction.html', { append: true })
             .then(function (dialog) {
-                if (ieAlert && ieCounter >= 1 && ieCounter < weeks + 1) {
-                    ieAlert.then(() => {
-                        dialog.show();
-                    })
-                } else {
-                    dialog.show();
-                }
+                dialog.show();
             });
     }
 }
@@ -60,12 +64,19 @@ let raiseAddictionLevels = function() {
         switch (currentPhase) {
             case 1: // phase 1
                 uxLeadP1Score += 3;
+                totalUXLeadScore += 3;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
                 uxLeadP2Score += 3;
+                totalUXLeadScore += 3;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -86,19 +97,26 @@ let bribeCritics = function() {
         techLeadApScore += 2;
         sysArchApScore += 2;
         uxLeadApScore += 2;
-        totalApScore += teamLeadApScore + techLeadApScore + sysArchApScore + uxLeadApScore;
+        totalApScore += 8;
         apTableSetup();
 
         // add 3 points to tech lead score
         switch (currentPhase) {
             case 1: // phase 1
                 techLeadP1Score += 3;
+                totalTechLeadScore += 3;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
                 techLeadP2Score += 3;
+                totalTechLeadScore += 3;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -115,13 +133,13 @@ let workWithExperts = function() {
     noPointsCounted = 'yes';
     sessionStorageSetup();
 
-    ons.notification.alert(`You do not take these concerns lightly, and so you invite digital addiction experts to collaborate and ensure that <i>Angry Cats</i> does no harm. This takes a toll on process and internal system quality.<br/><br/>Everyone loses 5 team points and 2 action points. No points are counted for one round.`).then(() => {
+    ons.notification.alert(`You do not take these concerns lightly, and so you invite digital addiction experts to collaborate and ensure that <i>Angry Cats</i> does no harm. This takes a toll on process and internal system quality.<br/><br/>Everyone loses 5 team points and 2 action points. No team points are counted for one round.`).then(() => {
         // everyone loses 2 action points :(
         teamLeadApScore -= 2;
         techLeadApScore -= 2;
         sysArchApScore -= 2;
         uxLeadApScore -= 2;
-        totalApScore += teamLeadApScore + techLeadApScore + sysArchApScore + uxLeadApScore;
+        totalApScore -= 8;
         apTableSetup();
 
         // subtract 5 points from each dimension
@@ -131,6 +149,11 @@ let workWithExperts = function() {
                 uxLeadP1Score -= 5
                 techLeadP1Score -= 5;
                 teamLeadP1Score -= 5;
+
+                totalSysArchScore -= 5;
+                totalUXLeadScore -= 5;
+                totalTechLeadScore -= 5;
+                totalTeamLeadScore -= 5;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
@@ -138,8 +161,18 @@ let workWithExperts = function() {
                 uxLeadP2Score -= 5;
                 techLeadP2Score -= 5;
                 teamLeadP2Score -= 5;
+
+                totalSysArchScore -= 5;
+                totalUXLeadScore -= 5;
+                totalTechLeadScore -= 5;
+                totalTeamLeadScore -= 5;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -157,13 +190,7 @@ let dataLeak = function(){
     } else {
         ons.createElement('data-leak.html', { append: true })
             .then(function (dialog) {
-                if (ieAlert && ieCounter >= 1 && ieCounter < weeks + 1) {
-                    ieAlert.then(() => {
-                        dialog.show();
-                    })
-                } else {
-                    dialog.show();
-                }
+                dialog.show();
             });
     }
 }
@@ -192,12 +219,19 @@ let coverLeak = function() {
         switch (currentPhase) {
             case 1: // phase 1
                 teamLeadP1Score += 5;
+                totalTeamLeadScore += 5;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
                 teamLeadP2Score += 5;
+                totalTeamLeadScore += 5;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -222,12 +256,19 @@ let discloseToBOD = function() {
         switch (currentPhase) {
             case 1: // phase 1
                 teamLeadP1Score -= 2;
+                totalTeamLeadScore -= 2;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
                 teamLeadP2Score -= 2;
+                totalTeamLeadScore -= 2;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -248,16 +289,28 @@ let discloseToPublic = function() {
                 sysArchP1Score += 2;
                 techLeadP1Score -= 5
                 teamLeadP1Score -= 5;
+
+                totalSysArchScore += 2;
+                totalTechLeadScore -= 5;
+                totalTeamLeadScore -= 5;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
                 sysArchP2Score += 2;
                 techLeadP2Score -= 5;
                 teamLeadP2Score -= 5;
+
+                totalSysArchScore += 2;
+                totalTechLeadScore -= 5;
+                totalTeamLeadScore -= 5;
                 phase2ScoreSetup();
                 break;
         }
-
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
+        }
     });
 
     if (dl) {
@@ -274,13 +327,7 @@ let ventureCapitalism = function() {
     } else {
         ons.createElement('venture-capitalism.html', { append: true })
             .then(function (dialog) {
-                if (ieAlert && ieCounter >= 1 && ieCounter < weeks + 1) {
-                    ieAlert.then(() => {
-                        dialog.show();
-                    })
-                } else {
-                    dialog.show();
-                }
+                dialog.show();
             });
     }
 }
@@ -306,6 +353,11 @@ let acceptVcOffer = function() {
                 techLeadP1Score += 5;
                 sysArchP1Score += 5;
                 uxLeadP1Score += 5;
+
+                totalTechLeadScore += 5;
+                totalTeamLeadScore += 5;
+                totalSysArchScore += 5;
+                totalUXLeadScore += 5;
                 phase1ScoreSetup();
                 break;
             case 2: // phase 2
@@ -313,8 +365,18 @@ let acceptVcOffer = function() {
                 techLeadP2Score += 5;
                 sysArchP2Score += 5;
                 uxLeadP2Score += 5;
+
+                totalTechLeadScore += 5;
+                totalTeamLeadScore += 5;
+                totalSysArchScore += 5;
+                totalUXLeadScore += 5;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 
@@ -354,12 +416,19 @@ let rejectFormCoop = function() {
         switch (currentPhase) {
             case 1:
                 techLeadP1Score -= 2;
+                totalTechLeadScore -= 2;
                 phase1ScoreSetup();
                 break;
             case 2:
                 techLeadP2Score -= 2;
+                totalTechLeadScore -= 2;
                 phase2ScoreSetup();
                 break;
+        }
+    })
+    .then(() => {
+        if (cardWithITElement) {
+            intertemporalElement(cardWithITElement);
         }
     });
 

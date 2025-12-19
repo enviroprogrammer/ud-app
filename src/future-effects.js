@@ -4,13 +4,18 @@ let futureEffectTriggered = 'no';
 // alert box shows up when a future effect is triggered
 let feAlert;
 
+// on android, the major event choices appear in all caps (e.g. BRIBE CRITICS) so i accounted for that
 let bribeCriticsFutureEffect = function() {
     if (majorEventOption === 'Bribe critics' || majorEventOption === 'BRIBE CRITICS') {
         teamLeadP3Score -= 5;
         techLeadP3Score -= 5;
         sysArchP3Score -= 5;
         uxLeadP3Score -= 5;
-        totalPhase3Score = teamLeadP3Score + techLeadP3Score + sysArchP3Score + uxLeadP3Score;
+
+        totalTeamLeadScore -= 5;
+        totalTechLeadScore -= 5;
+        totalSysArchScore -= 5;
+        totalUXLeadScore -= 5;
 
         teamLeadApScore -= 5;
         techLeadApScore -= 5;
@@ -26,7 +31,11 @@ let addictionExpertsFutureEffect = function() {
         techLeadP3Score += 5;
         sysArchP3Score += 5;
         uxLeadP3Score += 5;
-        totalPhase3Score = teamLeadP3Score + techLeadP3Score + sysArchP3Score + uxLeadP3Score;
+
+        totalTeamLeadScore += 5;
+        totalTechLeadScore += 5;
+        totalSysArchScore += 5;
+        totalUXLeadScore += 5;
 
         teamLeadApScore += 4;
         techLeadApScore += 4;
@@ -40,16 +49,19 @@ let bodFutureEffect = function() {
     if (majorEventOption === 'Disclose to board of directors' || majorEventOption === 'DISCLOSE TO BOARD OF DIRECTORS') {
         disclosedToBOD = 'yes';
         noPointsCounted = 'yes';
+
         teamLeadP3Score -= 5;
         techLeadP3Score -= 5;
-        totalPhase3Score = teamLeadP3Score + techLeadP3Score;
+
+        totalTeamLeadScore -= 5;
+        totalTechLeadScore -= 5;
     }
 }
 
 let publicFutureEffect = function() {
     if (majorEventOption === 'Disclose to public' || majorEventOption === 'DISCLOSE TO PUBLIC') {
         teamLeadP3Score += 5;
-        totalPhase3Score += 5;
+        totalTeamLeadScore += 5;
 
         teamLeadApScore += 2;
         techLeadApScore += 2;
@@ -65,7 +77,11 @@ let vcFutureEffect = function() {
         techLeadP3Score -= 10;
         sysArchP3Score -= 10;
         uxLeadP3Score -= 10;
-        totalPhase3Score = teamLeadP3Score + techLeadP3Score + sysArchP3Score + uxLeadP3Score;
+
+        totalTeamLeadScore -= 10;
+        totalTechLeadScore -= 10;
+        totalSysArchScore -= 10;
+        totalUXLeadScore -= 10;
 
         teamLeadApScore -= 5;
         techLeadApScore -= 5;
@@ -83,7 +99,11 @@ let coopFutureEffect = function() {
         techLeadP3Score += 5;
         sysArchP3Score += 5;
         uxLeadP3Score += 5;
-        totalPhase3Score = teamLeadP3Score + techLeadP3Score + sysArchP3Score + uxLeadP3Score;
+
+        totalTeamLeadScore += 5;
+        totalTechLeadScore += 5;
+        totalSysArchScore += 5;
+        totalUXLeadScore += 5;
 
         teamLeadApScore += 5;
         techLeadApScore += 5;
@@ -104,7 +124,7 @@ let futureEffect = function() {
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {
@@ -117,7 +137,7 @@ let futureEffect = function() {
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {
@@ -126,13 +146,13 @@ let futureEffect = function() {
         } else if (majorEventOption === 'Cover up leak' || majorEventOption === 'COVER UP LEAK') {
             gameOver();
         } else if (majorEventOption === 'Disclose to board of directors' || majorEventOption === 'DISCLOSE TO BOARD OF DIRECTORS') {
-            feAlert = ons.notification.alert(`The board of directors decided not to reveal the data leak to the public, and so the public is calling for disciplinary action. As a consequence, a board member gets fired, and all senior levels have been demoted. You must rebrand if you want to continue with launching <i>DysTalk</i>. You will be backed by an oversight committee, appointed by the board of directors, to see this rebranding through.<br/><br/>No points will be counted for the next round. Team lead and tech lead, ${sessionStorage.getItem('Team Lead')} and ${sessionStorage.getItem('Technical Lead')} lose 5 team points each.`)
+            feAlert = ons.notification.alert(`The board of directors decided not to reveal the data leak to the public, and so the public is calling for disciplinary action. As a consequence, a board member gets fired, and all senior levels have been demoted. You must rebrand if you want to continue with launching <i>DysTalk</i>. You will be backed by an oversight committee, appointed by the board of directors, to see this rebranding through.<br/><br/>No team points will be counted for the next round. Team lead and tech lead, ${sessionStorage.getItem('Team Lead')} and ${sessionStorage.getItem('Technical Lead')}, lose 5 team points each.`)
             .then(() => {
                 bodFutureEffect();
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {
@@ -145,7 +165,7 @@ let futureEffect = function() {
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {
@@ -157,26 +177,26 @@ let futureEffect = function() {
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {
                 phase3ScoreSetup();
             });
-        } else if (majorEventOption === 'Reject VC offer' || majorEventOption === 'REJECT VC OFFER') {
+        } else if (majorEventOption === 'Reject offer and continue' || majorEventOption === 'REJECT OFFER AND CONTINUE') {
             feAlert = ons.notification.alert('Nothing to see here. Move along.')
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             });
-        } else if (majorEventOption === 'Become coop' || majorEventOption === 'BECOME COOP') {
+        } else if (majorEventOption === 'Reject offer and become coop' || majorEventOption === 'REJECT OFFER AND BECOME COOP') {
             feAlert = ons.notification.alert(`While there were little to no short-term effects with <i>Earthbook</i>, the long-term effects are actually very positive because you decided to form a coop rather than accept venture capital funding. <i>Earthbook</i> ends up going viral among many environmentalist circles around the world, with more new users than you can count joining every week! Some of these new users say that it is far better than Facebook and other mainstream social networks, and they have never looked back.<br/><br/>Everyone has earned 5 team points and 5 action points each. Amazing work!`).then(() => {
                 coopFutureEffect();
             })
             .then(() => {
                 if (cardWithITElement) {
-                    intertemporalElement(playedCard);
+                    intertemporalElement(cardWithITElement);
                 }
             })
             .then(() => {

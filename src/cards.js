@@ -1,4 +1,5 @@
-const cardJson = `{
+// JSON database to store game card information
+const cardDatabase = `{
   "cards": [
     {
       "name": "User Studies A",
