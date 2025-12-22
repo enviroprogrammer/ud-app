@@ -281,7 +281,7 @@ let updatePhase2Scores = function(card) {
             intertemporalElement(cardWithITElement);
         }
 
-        if (teamLeadP2Score >= 10 && techLeadP2Score >= 10 && sysArchP2Score >= 10 && uxLeadP2Score >= 10) {
+        if (totalTechLeadScore >= 10 && totalTeamLeadScore >= 10 && totalSysArchScore >= 10 && totalUXLeadScore >= 10) {
             triggerMajorEvent();
         }
     }
@@ -329,7 +329,7 @@ let updatePhase3Scores = function(card) {
                 intertemporalElement(cardWithITElement);
             }
 
-            if (teamLeadP3Score >= 10 && techLeadP3Score >= 10 && sysArchP3Score >= 10 && uxLeadP3Score >= 10) {
+            if (totalTechLeadScore >= 10 && totalTeamLeadScore >= 10 && totalSysArchScore >= 10 && totalUXLeadScore >= 10) {
                 triggerMajorEvent();
             }
         }

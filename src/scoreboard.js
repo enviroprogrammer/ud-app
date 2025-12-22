@@ -330,15 +330,24 @@ document.getElementById('scorecard').innerHTML = `
                 <p><b>Work with addiction experts:</b> You take the critics' concerns seriously and invite digital addiction experts to ensure that the game is not harmful at all. You find ways to balance players' wellbeing with company profit.</p>
                 <br/><br/>
                 <div>
-                    <ons-button id="invest-addiction" onclick="raiseAddictionLevels()">Invest in addiction increase</ons-button>
+                    <ons-button id="invest-addiction" onclick="raiseAddictionLevels()">
+                        <ons-icon icon="fa-dollar-sign" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                        Invest in addiction increase
+                    </ons-button>
                 </div>
                 <br/>
                 <div>
-                    <ons-button id="bribe-critics" onclick="bribeCritics()">Bribe critics</ons-button>
+                    <ons-button id="bribe-critics" onclick="bribeCritics()">
+                        <ons-icon icon="fa-money-bill" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                        Bribe critics
+                    </ons-button>
                 </div>
                 <br/>
                 <div>
-                    <ons-button id="work-with-experts" onclick="workWithExperts()">Work with addiction experts</ons-button>
+                    <ons-button id="work-with-experts" onclick="workWithExperts()">
+                        <ons-icon icon="fa-users" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                        Work with addiction experts
+                    </ons-button>
                 </div>
             </div>
         </div>
@@ -356,15 +365,24 @@ document.getElementById('scorecard').innerHTML = `
                     <p><b>Disclose to public:</b> by disclosing the leak to the public, those affected will know that their account has been compromised</p>
                     <br/><br/>
                     <div>
-                        <ons-button id="cover-leak" onclick="coverLeak()">Cover up leak</ons-button>
+                        <ons-button id="cover-leak" onclick="coverLeak()">
+                            <ons-icon icon="fa-shield" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Cover up leak
+                        </ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="disclose-board" onclick="discloseToBOD()">Disclose to board of directors</ons-button>
+                        <ons-button id="disclose-board" onclick="discloseToBOD()">
+                            <ons-icon icon="fa-user-tie" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Disclose to board of directors
+                        </ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="disclose-public" onclick="discloseToPublic()">Disclose to public</ons-button>
+                        <ons-button id="disclose-public" onclick="discloseToPublic()">
+                            <ons-icon icon="fa-users" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Disclose to public
+                        </ons-button>
                     </div>
                 </div>
             </div>
@@ -384,15 +402,24 @@ document.getElementById('scorecard').innerHTML = `
                     <p><b>Reject offer and become coop:</b> Because Earthbook thrives on sustainability, which in turn thrives on degrowth, you decide to turn <i>Earthbook</i> into a coop in favour of a just, sustainable economy that places human wellbeing over profit. Sustainability heavily prides itself on cutting down on energy and resource consumption to prioritize human wellbeing over profit within planetary boundaries. This is also known as <b>degrowth</b>. As a result, you decide to turn Earthbook into a coop.</p>
                     <br/><br/>
                     <div>
-                        <ons-button id="accept-vc" onclick="acceptVcOffer()">Accept VC offer</ons-button>
+                        <ons-button id="accept-vc" onclick="acceptVcOffer()">
+                            <ons-icon icon="ion-ios-cash, material:md-money" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Accept VC offer
+                        </ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="reject-continue" onclick="rejectContinue()">Reject offer and continue</ons-button>
+                        <ons-button id="reject-continue" onclick="rejectContinue()">
+                            <ons-icon icon="ion-ios-arrow-forward, material:md-forward" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Reject offer and continue
+                        </ons-button>
                     </div>
                     <br/>
                     <div>
-                        <ons-button id="reject-coop" onclick="rejectFormCoop()">Reject offer and become coop</ons-button>
+                        <ons-button id="reject-coop" onclick="rejectFormCoop()">
+                            <ons-icon icon="fa-users" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
+                            Reject offer and become coop
+                        </ons-button>
                     </div>
                 </div>
             </div>
