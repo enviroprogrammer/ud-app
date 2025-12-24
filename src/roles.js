@@ -222,15 +222,17 @@ document.getElementById('roles').innerHTML = `
 <!--                    </ons-button>-->
 <!--                </div>-->
 <!--            </div>-->
-            <div class="alert-dialog-title" style="font-size: 23px !important;">Roles</div>
-            <div class="alert-dialog-content" style="font-size: 16px !important;">
-                    <p><b>Systems Architect:</b> responsible for <b>gathering system requirements</b> and defining the <b>system architecture</b> that fulfills these requirements.<br/>Focuses on <b>internal</b> quality.</p>
-                    <p><b>UX Lead:</b> ensure that users who interact with the system have a <b>positive experience</b><br/>Focuses on <b>external</b> quality.</p>
-                    <p><b>Technical Lead:</b> the principal <b>software engineer</b> who leads the <b>development team</b>, uses a <b>hands-on</b> approach with code, and handles the <b>quality of technical deliverables</b><br/>Focuses on <b>process</b> quality.</p>
-                    <p><b>Team Lead:</b> keeps the team <b>on schedule</b> and <b>in line</b>, meaning that if the team underperforms, the team lead takes a severe hit<br/>Focuses on <b>team</b> quality.</p>
-            </div>
-            <div class="alert-dialog-footer">
-                <ons-alert-dialog-button onclick="hideRoleDescriptions()">Back to Game</ons-alert-dialog-button>
+            <div style="height: 70vh; overflow-y: auto;">
+                <div class="alert-dialog-title" style="font-size: 23px !important;">Roles</div>
+                <div class="alert-dialog-content" style="font-size: 16px !important;">
+                        <p><b>Systems Architect:</b> responsible for <b>gathering system requirements</b> and defining the <b>system architecture</b> that fulfills these requirements.<br/>Focuses on <b>internal</b> quality.</p>
+                        <p><b>UX Lead:</b> ensure that users who interact with the system have a <b>positive experience</b><br/>Focuses on <b>external</b> quality.</p>
+                        <p><b>Technical Lead:</b> the principal <b>software engineer</b> who leads the <b>development team</b>, uses a <b>hands-on</b> approach with code, and handles the <b>quality of technical deliverables</b><br/>Focuses on <b>process</b> quality.</p>
+                        <p><b>Team Lead:</b> keeps the team <b>on schedule</b> and <b>in line</b>, meaning that if the team underperforms, the team lead takes a severe hit<br/>Focuses on <b>team</b> quality.</p>
+                </div>
+                <div class="alert-dialog-footer">
+                    <ons-alert-dialog-button onclick="hideRoleDescriptions()">Back to Game</ons-alert-dialog-button>
+                </div>
             </div>
         </ons-alert-dialog>
     </template>

@@ -80,14 +80,16 @@ document.getElementById('scenarios').innerHTML = `
     
     <template id="scenario-descriptions.html">
         <ons-alert-dialog id="scenario-descriptions">
-            <div class="alert-dialog-title" style="font-size: 23px !important;">Scenarios</div>
-            <div class="alert-dialog-content" style="font-size: 16px !important;">
-                    <p><b>Angry Cats:</b> You work in a cross-functional team at a startup game studio, and you have just signed a contract with a notable publisher to develop and release a new game.</p>
-                    <p><b>DysTalk:</b> You and your team have formed a startup to develop a secure communication and networking product.</p>
-                    <p><b>Earthbook (new!):</b> Inspired by the influx of social media usage, especially for addressing environmental issues, you and a team of tech-savvy, eco-conscious folks have an idea for a new kind of social media where environmentalists can connect and uplift one another to make the environment better for generations to come.</p>
-            </div>
-            <div class="alert-dialog-footer">
-                <ons-alert-dialog-button onclick="hideScenarioDescriptions()">Back to Game</ons-alert-dialog-button>
+            <div style="height: 70vh; overflow-y: auto;">
+                <div class="alert-dialog-title" style="font-size: 23px !important;">Scenarios</div>
+                <div class="alert-dialog-content" style="font-size: 16px !important;">
+                        <p><b>Angry Cats:</b> You work in a cross-functional team at a startup game studio, and you have just signed a contract with a notable publisher to develop and release a new game.</p>
+                        <p><b>DysTalk:</b> You and your team have formed a startup to develop a secure communication and networking product.</p>
+                        <p><b>Earthbook (new!):</b> Inspired by the influx of social media usage, especially for addressing environmental issues, you and a team of tech-savvy, eco-conscious folks have an idea for a new kind of social media where environmentalists can connect and uplift one another to make the environment better for generations to come.</p>
+                </div>
+                <div class="alert-dialog-footer">
+                    <ons-alert-dialog-button onclick="hideScenarioDescriptions()">Back to Game</ons-alert-dialog-button>
+                </div>
             </div>
         </ons-alert-dialog>
     </template>
