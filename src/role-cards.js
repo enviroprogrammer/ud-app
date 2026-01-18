@@ -58,11 +58,19 @@ let roleApPointsByCard = function(card) {
         case 'Feature Development B':
             uxLeadApScore++;
             totalApScore++;
+            break;
         case 'Test-Driven Development A':
         case 'Test-Driven Development B':
             sysArchApScore++;
             totalApScore++;
-
+            break;
+        case 'Celebration of Honesty': // +2 AP points per player when this is played
+            teamLeadApScore += 2;
+            techLeadApScore += 2;
+            sysArchApScore += 2;
+            uxLeadApScore += 2;
+            totalApScore += 8;
+            break;
     }
 }
 
