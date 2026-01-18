@@ -101,7 +101,7 @@ let diceRoll = function() {
                     apTableSetup();
                 });
         } else if (roll >= 4 && roll <= 6) {
-            ons.notification.alert(`<br/>Your teammate has unfortunately fallen victim to your competitor and decides to join them. Systems architect ${sessionStorage.getItem('Systems Architect')}, tech lead ${sessionStorage.getItem('Technical Lead')}, and team lead ${sessionStorage.getItem('Team Lead')} all lose 2 points.`, {title: 'You rolled ' + roll + '! 🎲'})
+            ons.notification.alert(`Your teammate has unfortunately fallen victim to your competitor and decides to join them.<br/>Systems architect ${sessionStorage.getItem('Systems Architect')}, tech lead ${sessionStorage.getItem('Technical Lead')}, and team lead ${sessionStorage.getItem('Team Lead')} all lose 2 points.`, {title: 'You rolled ' + roll + '! 🎲'})
                 .then(() => {
                     if (currentPhase === 1) {
                         sysArchP1Score -= 2;
@@ -145,7 +145,7 @@ let diceRoll = function() {
     } else if (acccb && currentScenario === 'Angry Cats 🐱') {
         acccb.remove();
         if (roll >= 1 && roll <= 3) {
-            ons.notification.alert(`<br/><br/>Your competitor's game turns out to be a flop!<br/>UX lead ${sessionStorage.getItem('UX Lead')} gets 4 points and everyone receives an additional AP point.`, {title: 'You rolled ' + roll + '! 🎲'})
+            ons.notification.alert(`Your competitor's game turns out to be a flop!<br/>UX lead ${sessionStorage.getItem('UX Lead')} gets 4 points and everyone receives an additional AP point.`, {title: 'You rolled ' + roll + '! 🎲'})
                 .then(() => {
                     if (currentPhase === 1) {
                         uxLeadP1Score += 4;
@@ -286,7 +286,7 @@ let diceRoll = function() {
                     setCurrentRound();
                 });
         } else if (roll >= 4 && roll <= 6) {
-            ons.notification.alert(`Unfortunately, your new teammate messes things up. Systems architect ${sessionStorage.getItem('Systems Architect')}, tech lead ${sessionStorage.getItem('Technical Lead')}, and team lead ${sessionStorage.getItem('Team Lead')} all lose 2 points.`, {title: 'You rolled ' + roll + '! 🎲'})
+            ons.notification.alert(`Unfortunately, your new teammate messes things up.<br/>Systems architect ${sessionStorage.getItem('Systems Architect')}, tech lead ${sessionStorage.getItem('Technical Lead')}, and team lead ${sessionStorage.getItem('Team Lead')} all lose 2 points.`, {title: 'You rolled ' + roll + '! 🎲'})
                 .then(() => {
                     if (currentPhase === 1) {
                         sysArchP1Score -= 2;
