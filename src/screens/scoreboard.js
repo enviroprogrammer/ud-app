@@ -179,11 +179,10 @@ document.getElementById('scorecard').innerHTML = `
             <ons-toolbar>
                 <div class="left">
                     <ons-toolbar-button><ons-icon id="help" icon="ion-ios-help-circle-outline, material:md-help-outline" size="25px"></ons-icon></ons-toolbar-button>
-<!--                    <ons-toolbar-button><ons-icon id="home" icon="ion-ios-home, material:md-home" onclick="window.location = '/'"></ons-icon></ons-toolbar-button>-->
                 </div>
                 <div class="center"></div>
                 <div class="right">
-                    <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px"></ons-icon></ons-toolbar-button>
                 </div>
             </ons-toolbar>
             
@@ -596,7 +595,7 @@ document.getElementById('scorecard').innerHTML = `
                 
                 <!-- for testing locally -->
 <!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
-<!--                <br/>-->
+                <br/>
             </div>
         </ons-dialog>
     </template>
@@ -611,7 +610,7 @@ document.getElementById('scorecard').innerHTML = `
                 
                 <!-- for testing locally -->
 <!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
-<!--                <br/>-->
+                <br/>
             </div>
         </ons-dialog>
     </template>
@@ -625,7 +624,7 @@ document.getElementById('scorecard').innerHTML = `
                 
                 <!-- for testing locally -->
 <!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
-<!--                <br/>-->
+                <br/>
             </div>
         </ons-dialog>
     </template>
@@ -639,7 +638,7 @@ document.getElementById('scorecard').innerHTML = `
                 
                 <!-- for testing locally -->
 <!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
-<!--                <br/>-->
+                <br/>
             </div>
         </ons-dialog>
     </template>

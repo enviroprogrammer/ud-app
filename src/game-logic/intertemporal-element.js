@@ -22,7 +22,7 @@ let intertemporalElement = function (card) {
     weeks = Number(cardObj.cards[cardIndex].intertemporalElement["weeks"]);
 
     // intertemporal effect begins the week after the card was played
-    if (noPointsCounted === 'no') {
+    // if (noPointsCounted === 'no') {
         if (ieCounter === 0) {
             ieCounter++;
         } else if (ieCounter >= 1 && ieCounter < weeks + 1) {
@@ -92,5 +92,5 @@ let intertemporalElement = function (card) {
     if (ieCounter >= weeks + 1) {
         ieCounter = 0; // reset counter to allow another card with an intertemporal element to be played
         cardWithITElement = ''; // reset card with intertemporal element so another similar card can be played
-    }
+    // }
 }

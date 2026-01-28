@@ -70,7 +70,7 @@ document.getElementById('players').innerHTML = `
           <ons-toolbar>
             <div class="left"><ons-back-button onclick="resetPlayers()">Home</ons-back-button></div>
             <div class="center">Player Setup</div>
-            <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="fa-lightbulb" size="25px"></ons-icon></ons-toolbar-button></div>
+            <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
           <section style="text-align: center">
             <h2>Add <b>players</b> below:</h2>

@@ -228,6 +228,10 @@ let updatePhase1Scores = function(card) {
             sysArchApScore += 0;
             uxLeadApScore += 0;
 
+            if (cardWithITElement) {
+                intertemporalElement(cardWithITElement);
+            }
+
             noPointsCounted = 'no';
         } else if ((workedWithExperts === 'yes' && noPointsCounted === 'no') || workedWithExperts === 'no') {
             techLeadP1Score += process;
@@ -311,6 +315,10 @@ let updatePhase3Scores = function(card) {
             sysArchApScore += 0;
             uxLeadApScore += 0;
 
+            if (cardWithITElement) {
+                intertemporalElement(cardWithITElement);
+            }
+
             noPointsCounted = 'no';
         } else if ((disclosedToBOD === 'yes' && noPointsCounted === 'no') || disclosedToBOD === 'no') {
             techLeadP3Score += process;
@@ -358,149 +366,6 @@ let startNewPhase = function() {
     currentPhase++;
     setCurrentPhase();
     sessionStorageSetup();
-}
-
-let addScoresToGatePass = function() {
-    document.getElementById('tl-header').innerHTML = `Team (${sessionStorage.getItem('Team Lead')})`;
-    document.getElementById('techl-header').innerHTML = `Process (${sessionStorage.getItem('Technical Lead')})`;
-    document.getElementById('sa-header').innerHTML = `Internal (${sessionStorage.getItem('Systems Architect')})`;
-    document.getElementById('ux-header').innerHTML = `External (${sessionStorage.getItem('UX Lead')})`;
-
-    let currentTeamLeadScore = document.getElementById('current-team-lead-score');
-    let currentTechLeadScore = document.getElementById('current-tech-lead-score');
-    let currentSysArchScore = document.getElementById('current-sys-arch-score');
-    let currentUXLeadScore = document.getElementById('current-ux-lead-score');
-
-    let teamLeadGateScore = document.getElementById('team-lead-gate-score');
-    let techLeadGateScore = document.getElementById('tech-lead-gate-score');
-    let sysArchGateScore = document.getElementById('sys-arch-gate-score');
-    let uxLeadGateScore = document.getElementById('ux-lead-gate-score');
-
-    switch (currentPhase) {
-        case 1:
-            currentTeamLeadScore.innerHTML = teamLeadP1Score;
-            currentTechLeadScore.innerHTML = techLeadP1Score;
-            currentSysArchScore.innerHTML = sysArchP1Score;
-            currentUXLeadScore.innerHTML = uxLeadP1Score;
-            break;
-        case 2:
-            currentTeamLeadScore.innerHTML = teamLeadP2Score;
-            currentTechLeadScore.innerHTML = techLeadP2Score;
-            currentSysArchScore.innerHTML = sysArchP2Score;
-            currentUXLeadScore.innerHTML = uxLeadP2Score;
-            break;
-        case 3:
-            currentTeamLeadScore.innerHTML = teamLeadP3Score;
-            currentTechLeadScore.innerHTML = techLeadP3Score;
-            currentSysArchScore.innerHTML = sysArchP3Score;
-            currentUXLeadScore.innerHTML = uxLeadP3Score;
-            break;
-    }
-
-    if (currentScenario === 'Angry Cats 🐱') {
-        if (currentPhase === 1) {
-            teamLeadGateScore.innerHTML = acTeamLeadP1.toString();
-            techLeadGateScore.innerHTML = acTechLeadP1.toString();
-            sysArchGateScore.innerHTML = acSysArchP1.toString();
-            uxLeadGateScore.innerHTML = acUXLeadP1.toString();
-        } else if (currentPhase === 2) {
-            teamLeadGateScore.innerHTML = acTeamLeadP2.toString();
-            techLeadGateScore.innerHTML = acTechLeadP2.toString();
-            sysArchGateScore.innerHTML = acSysArchP2.toString();
-            uxLeadGateScore.innerHTML = acUXLeadP2.toString();
-        } else if (currentPhase === 3) {
-            teamLeadGateScore.innerHTML = acTeamLeadP3.toString();
-            techLeadGateScore.innerHTML = acTechLeadP3.toString();
-            sysArchGateScore.innerHTML = acSysArchP3.toString();
-            uxLeadGateScore.innerHTML = acUXLeadP3.toString();
-        }
-    } else if (currentScenario === 'DysTalk 📞') {
-        if (currentPhase === 1) {
-            teamLeadGateScore.innerHTML = dtTeamLeadP1.toString();
-            techLeadGateScore.innerHTML = dtTechLeadP1.toString();
-            sysArchGateScore.innerHTML = dtSysArchP1.toString();
-            uxLeadGateScore.innerHTML = dtUXLeadP1.toString();
-        } else if (currentPhase === 2) {
-            teamLeadGateScore.innerHTML = dtTeamLeadP2.toString();
-            techLeadGateScore.innerHTML = dtTechLeadP2.toString();
-            sysArchGateScore.innerHTML = dtSysArchP2.toString();
-            uxLeadGateScore.innerHTML = dtUXLeadP2.toString();
-        } else if (currentPhase === 3) {
-            teamLeadGateScore.innerHTML = dtTeamLeadP3.toString();
-            techLeadGateScore.innerHTML = dtTechLeadP3.toString();
-            sysArchGateScore.innerHTML = dtSysArchP3.toString();
-            uxLeadGateScore.innerHTML = dtUXLeadP3.toString();
-        }
-    } else if (currentScenario === 'Earthbook 🌎') {
-        if (currentPhase === 1) {
-            teamLeadGateScore.innerHTML = ebTeamLeadP1.toString();
-            techLeadGateScore.innerHTML = ebTechLeadP1.toString();
-            sysArchGateScore.innerHTML = ebSysArchP1.toString();
-            uxLeadGateScore.innerHTML = ebUXLeadP1.toString();
-        } else if (currentPhase === 2) {
-            teamLeadGateScore.innerHTML = ebTeamLeadP2.toString();
-            techLeadGateScore.innerHTML = ebTechLeadP2.toString();
-            sysArchGateScore.innerHTML = ebSysArchP2.toString();
-            uxLeadGateScore.innerHTML = ebUXLeadP2.toString();
-        } else if (currentPhase === 3) {
-            teamLeadGateScore.innerHTML = ebTeamLeadP3.toString();
-            techLeadGateScore.innerHTML = ebTechLeadP3.toString();
-            sysArchGateScore.innerHTML = ebSysArchP3.toString();
-            uxLeadGateScore.innerHTML = ebUXLeadP3.toString();
-        }
-    }
-}
-
-let displayCurrentTeamScores = function() {
-    let bn = document.getElementById('best-narrative');
-    let gc = document.getElementById('gate-check');
-
-    if (bn) {
-        bn.remove();
-    }
-
-    if (gc) {
-        gc.show();
-    } else {
-        ons.createElement('gate-check.html', {append: true})
-            .then(function(dialog) {
-                addScoresToGatePass();
-                dialog.show();
-            });
-    }
-}
-
-let showPlayCardDialog = function(card) {
-    let pcd = document.getElementById('play-card-dialog');
-    playedCard = card;
-
-    if (pcd) {
-        pcd.show();
-    } else {
-        ons.createElement('play-card-dialog.html', { append: true })
-            .then(function(dialog) {
-                document.getElementById('qr-card').innerHTML = `You scanned: ${card.trim()}`;
-                document.getElementById('qr-result').innerHTML = `Are you sure you want to play ${card.trim()}?`; // some card names (pulled from scanning QR codes) have trailing white space; trim() is used to remove it
-                dialog.show();
-            })
-            .then(() => {
-                hideScannerDialog(); // hide dialog so users can keep scrolling up and down
-            });
-    }
-}
-
-let hidePlayCardDialog = function() {
-    let pcd = document.getElementById('play-card-dialog');
-    let qr = document.getElementById('qr-code-scanner');
-
-    if (qr) {
-        document.getElementById('qr-code-scanner').remove(); // remove scanner from dom to prepare for next scan
-    }
-
-    if (pcd) {
-        pcd.remove();
-        playedCard = ''; // reset played card
-    }
 }
 
 // keep track of whose turn it is

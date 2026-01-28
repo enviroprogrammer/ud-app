@@ -137,7 +137,7 @@ let dtStakeholderVisit = function () {
 
 // Education Workshop (Angry Cats & DysTalk)
 let edWorkshop = function () {
-    ons.notification.confirm('To develop your team strength, your team spends the day in an Education Workshop. You can either add the card to your hand or draw 2 cards from the deck.', {title: 'Education Workshop 📚', primaryButtonIndex: 0, buttonLabels: ['Play', 'Add to Hand'], callback: function (selected) {
+    ons.notification.confirm('To develop your team strength, your team spends the day in an Education Workshop. You can either play this card immediately by drawing 2 cards from the deck or add it to your hand.', {title: 'Education Workshop 📚', primaryButtonIndex: 0, buttonLabels: ['Play', 'Add to Hand'], callback: function (selected) {
             switch (selected) {
                 case 0: // play immediately
                     cardWithITElement = 'Education Workshop'; // this is to make sure the intertemporal effect from the workshop is applied
@@ -342,7 +342,7 @@ let pullAllNighterA = function () {
 
                         totalTeamLeadScore -= 2;
                         totalSysArchScore++;
-                        totalteamLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         totalUXLeadScore += 5;
                         phase1ScoreSetup();
                     } else if (currentPhase === 2) {
@@ -353,7 +353,7 @@ let pullAllNighterA = function () {
 
                         totalTeamLeadScore -= 2;
                         totalSysArchScore++;
-                        totalteamLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         totalUXLeadScore += 5;
                         phase2ScoreSetup();
                     } else if (currentPhase === 3) {
@@ -364,7 +364,7 @@ let pullAllNighterA = function () {
 
                         totalTeamLeadScore -= 2;
                         totalSysArchScore++;
-                        totalteamLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         totalUXLeadScore += 5;
                         phase3ScoreSetup();
                     }

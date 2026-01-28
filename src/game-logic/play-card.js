@@ -128,6 +128,10 @@ let playCard = function() {
                     // card has an intertemporal element
                     setCardWithITElement(playedCard);
 
+                    // if (noPointsCounted === 'yes') {
+                    //     noPointsCounted = 'no';
+                    // }
+
                     if (playedCard === 'User Studies A' || playedCard === 'User Studies B') {
                         usCardPlayedInP1 = true;
                     }
@@ -168,6 +172,10 @@ let playCard = function() {
                     // card has an intertemporal element
                     setCardWithITElement(playedCard);
 
+                    // if (noPointsCounted === 'yes') {
+                    //     noPointsCounted = 'no';
+                    // }
+
                     if (playedCard === 'User Studies A' || playedCard === 'User Studies B') {
                         usCardPlayedInP3 = true;
                     }
@@ -184,5 +192,38 @@ let playCard = function() {
         }
 
         hidePlayCardDialog();
+    }
+}
+
+let showPlayCardDialog = function(card) {
+    let pcd = document.getElementById('play-card-dialog');
+    playedCard = card;
+
+    if (pcd) {
+        pcd.show();
+    } else {
+        ons.createElement('play-card-dialog.html', { append: true })
+            .then(function(dialog) {
+                document.getElementById('qr-card').innerHTML = `You scanned: ${card.trim()}`;
+                document.getElementById('qr-result').innerHTML = `Are you sure you want to play ${card.trim()}?`; // some card names (pulled from scanning QR codes) have trailing white space; trim() is used to remove it
+                dialog.show();
+            })
+            .then(() => {
+                hideScannerDialog(); // hide dialog so users can keep scrolling up and down
+            });
+    }
+}
+
+let hidePlayCardDialog = function() {
+    let pcd = document.getElementById('play-card-dialog');
+    let qr = document.getElementById('qr-code-scanner');
+
+    if (qr) {
+        document.getElementById('qr-code-scanner').remove(); // remove scanner from dom to prepare for next scan
+    }
+
+    if (pcd) {
+        pcd.remove();
+        playedCard = ''; // reset played card
     }
 }

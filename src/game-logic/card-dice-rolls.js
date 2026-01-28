@@ -1,3 +1,8 @@
+// cards with dice rolls:
+// New Staff
+// Competitor Commotion A
+// Competitor Commotion B (Angry Cats only)
+
 let roll; // dice roll determining the fate of new staff or competitor commotion b cards
 
 // roll the (virtual) dice!
@@ -5,10 +10,10 @@ let diceRoll = function() {
     const rolls = [1, 2, 3, 4, 5, 6];
     roll = rolls[Math.floor(Math.random() * rolls.length)];
 
-    let dtns = document.getElementById('dt-new-staff');
-    let acns = document.getElementById('ac-new-staff');
-    let cca = document.getElementById('comp-commotion-a');
-    let acccb = document.getElementById('ac-comp-commotion-b');
+    let dtns = document.getElementById('dt-new-staff'); // New Staff (DysTalk)
+    let acns = document.getElementById('ac-new-staff'); // New Staff (Angry Cats)
+    let cca = document.getElementById('comp-commotion-a'); // Competitor Commotion A
+    let acccb = document.getElementById('ac-comp-commotion-b'); // Competitor Commotion B (Angry Cats)
 
     // new staff card (dystalk version) played
     if (dtns && currentScenario === 'DysTalk 📞') {
@@ -21,21 +26,21 @@ let diceRoll = function() {
                         techLeadP1Score += 2;
 
                         totalSysArchScore += 4;
-                        totalUXLeadScore += 2;
+                        totalTechLeadScore += 2;
                         phase1ScoreSetup();
                     } else if (currentPhase === 2) {
                         sysArchP2Score += 4;
                         techLeadP2Score += 2;
 
                         totalSysArchScore += 4;
-                        totalUXLeadScore += 2;
+                        totalTechLeadScore += 2;
                         phase2ScoreSetup();
                     } else if (currentPhase === 3) {
                         sysArchP3Score += 4;
                         techLeadP3Score += 2;
 
                         totalSysArchScore += 4;
-                        totalUXLeadScore += 2;
+                        totalTechLeadScore += 2;
                         phase3ScoreSetup();
                     }
                 })
@@ -56,21 +61,21 @@ let diceRoll = function() {
                         techLeadP1Score -= 2;
 
                         totalSysArchScore -= 2;
-                        totalUXLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         phase1ScoreSetup();
                     } else if (currentPhase === 2) {
                         sysArchP2Score -= 2;
                         techLeadP2Score -= 2;
 
                         totalSysArchScore -= 2;
-                        totalUXLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         phase2ScoreSetup();
                     } else if (currentPhase === 3) {
                         sysArchP3Score -= 2;
                         techLeadP3Score -= 2;
 
                         totalSysArchScore -= 2;
-                        totalUXLeadScore -= 2;
+                        totalTechLeadScore -= 2;
                         phase3ScoreSetup();
                     }
                 })
@@ -155,7 +160,7 @@ let diceRoll = function() {
                         techLeadApScore++;
                         sysArchApScore++;
                         uxLeadApScore++;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore += 4;
                         phase1ScoreSetup();
                         apTableSetup();
                     } else if (currentPhase === 2) {
@@ -166,7 +171,7 @@ let diceRoll = function() {
                         techLeadApScore++;
                         sysArchApScore++;
                         uxLeadApScore++;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore += 4;
                         phase2ScoreSetup();
                         apTableSetup();
                     } else if (currentPhase === 3) {
@@ -177,7 +182,7 @@ let diceRoll = function() {
                         techLeadApScore++;
                         sysArchApScore++;
                         uxLeadApScore++;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore += 4;
                         phase3ScoreSetup();
                         apTableSetup();
                     }
@@ -202,7 +207,7 @@ let diceRoll = function() {
                         teamLeadApScore--;
                         techLeadApScore--;
                         sysArchApScore--;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore -= 4;
 
                         phase1ScoreSetup();
                         apTableSetup();
@@ -214,7 +219,7 @@ let diceRoll = function() {
                         teamLeadApScore--;
                         techLeadApScore--;
                         sysArchApScore--;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore -= 4;
 
                         phase2ScoreSetup();
                         apTableSetup();
@@ -226,7 +231,7 @@ let diceRoll = function() {
                         teamLeadApScore--;
                         techLeadApScore--;
                         sysArchApScore--;
-                        totalApScore = teamLeadApScore + techLeadApScore + uxLeadApScore + sysArchApScore;
+                        totalApScore -= 4;
 
                         phase3ScoreSetup();
                         apTableSetup();
@@ -291,7 +296,7 @@ let diceRoll = function() {
                     if (currentPhase === 1) {
                         sysArchP1Score -= 2;
                         techLeadP1Score -= 2;
-                        teamLeadP1Score -= 2;
+                        uxLeadP1Score -= 2;
 
                         totalSysArchScore -= 2;
                         totalUXLeadScore -= 2;
@@ -300,7 +305,7 @@ let diceRoll = function() {
                     } else if (currentPhase === 2) {
                         sysArchP2Score -= 2;
                         techLeadP2Score -= 2;
-                        teamLeadP2Score -= 2;
+                        uxLeadP2Score -= 2;
 
                         totalSysArchScore -= 2;
                         totalUXLeadScore -= 2;
@@ -309,7 +314,7 @@ let diceRoll = function() {
                     } else if (currentPhase === 3) {
                         sysArchP3Score -= 2;
                         techLeadP3Score -= 2;
-                        teamLeadP3Score -= 2;
+                        uxLeadP3Score -= 2;
 
                         totalSysArchScore -= 2;
                         totalUXLeadScore -= 2;
