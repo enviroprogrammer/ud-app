@@ -182,7 +182,7 @@ document.getElementById('scorecard').innerHTML = `
                 </div>
                 <div class="center"></div>
                 <div class="right">
-                    <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
                 </div>
             </ons-toolbar>
             
