@@ -3,7 +3,7 @@ document.getElementById('about').innerHTML = `
         <ons-page id="about">
           <ons-toolbar>
             <div class="left"><ons-back-button>Home</ons-back-button></div>
-            <div class="center">About Undecided?</div>
+            <div class="center" style="font-size: 20px !important;">About Undecided?</div>
             <div class="right">
                 <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
             </div>

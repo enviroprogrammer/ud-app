@@ -69,7 +69,7 @@ document.getElementById('players').innerHTML = `
         <ons-page id="players">
           <ons-toolbar>
             <div class="left"><ons-back-button onclick="resetPlayers()">Home</ons-back-button></div>
-            <div class="center">Player Setup</div>
+            <div class="center" style="font-size: 20px !important;">Player Setup</div>
             <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
           <section style="text-align: center">

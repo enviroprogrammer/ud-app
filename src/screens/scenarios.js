@@ -32,8 +32,8 @@ document.getElementById('scenarios').innerHTML = `
     <template id="scenarios.html">
         <ons-page id="scenarios">
             <ons-toolbar>
-                <div class="left"><ons-back-button>Names</ons-back-button></div>
-                <div class="center">Scenario Selection</div>
+                <div class="left"><ons-back-button>Roles</ons-back-button></div>
+                <div class="center" style="font-size: 20px !important;">Scenario Selection</div>
                 <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button></div>
             </ons-toolbar>
             <section style="text-align: center">

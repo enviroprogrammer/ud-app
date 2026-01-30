@@ -5709,7 +5709,7 @@ h4, h5, h6 {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 270px;
+  width: 340px;
   margin: auto;
   background-color: #f4f4f4;
   background-color: var(--alert-dialog-background-color);

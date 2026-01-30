@@ -27,7 +27,8 @@ let hideMilestoneReview = function() {
     let mr = document.getElementById('milestone-review');
 
     if (mr) {
-        mr.hide();
+        tiedWinners = [];
+        mr.remove();
     }
 }
 
@@ -37,29 +38,41 @@ let collectMilestoneReviewVotes = function() {
     let inputs = document.getElementsByName('mr-vote');
     let labels = document.getElementById('votes').querySelectorAll('label');
 
+    // store the number of votes per player in a dictionary
+    // key: player's name
+    // value: number of votes a player received
     let voteDictionary = {};
+    // when pulling players' names into dictionary, remove semicolon from labels containing players' names
     voteDictionary[labels[0].innerText.slice(0, -1)] = Number(inputs[0].value);
     voteDictionary[labels[1].innerText.slice(0, -1)] = Number(inputs[1].value);
     voteDictionary[labels[2].innerText.slice(0, -1)] = Number(inputs[2].value);
     voteDictionary[labels[3].innerText.slice(0, -1)] = Number(inputs[3].value);
 
-    // get highest votes among players
+    // get highest votes among all players
+    let tiedWinners = []; // in case of a tie, add tied winners to tiedWinners array to achieve a tiebreaker
     for (let player in voteDictionary) {
         if (voteDictionary[player] > highestVotes) {
             highestVotes = voteDictionary[player];
+        } else if (voteDictionary[player] === highestVotes) { // there is a tie
+            tiedWinners.push(player);
         }
     }
 
-    // get list of players from dictionary
-    playerList = Object.keys(voteDictionary);
+    if (tiedWinners.length === 0) { // no one is tied
+        // get list of keys (players) from dictionary
+        playerList = Object.keys(voteDictionary);
 
-    // identify the player who has the highest votes
-    playerList.forEach((player) => {
-        if (voteDictionary[player] === highestVotes) {
-            winner = player;
-        }
-    });
+        // identify the player who has the highest votes
+        playerList.forEach((player) => {
+            if (voteDictionary[player] === highestVotes) {
+                winner = player;
+            }
+        });
+    } else { // at least two players are tied
+        winner = tiedWinners[Math.floor(Math.random() * tiedWinners.length)]; // use randomizer to randomly determine winner
+    }
 
+    // reset votes
     document.getElementsByName('mr-vote').forEach(input => input.value = 0);
 }
 

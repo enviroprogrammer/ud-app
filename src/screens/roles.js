@@ -137,14 +137,14 @@ document.getElementById('roles').innerHTML = `
         <ons-page id="roles">
           <ons-toolbar>
             <div class="left"><ons-back-button onclick="sessionStorage.clear()">Players</ons-back-button></div>
-            <div class="center">Assign Roles</div>
+            <div class="center" style="font-size: 20px !important;">Assign Roles</div>
             <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
           <section style="text-align: center; padding: 10px; margin-left: 15px; margin-right: 15px"">
             <h2>Assign <b>roles</b> to each player,<br/>either by <b>rolling the dice and randomly assigning roles</b> or <b>deliberating as a group.</b></h2>
             <h3><i><b>Note:</b> All players must be assigned a role to proceed to the next step.</i></h3>
             <div style="align-items: center;">
-                <p id="p1-name"></p>
+                <p id="p1-name" style="margin: 3px !important;"></p>
                 <ons-select id="p1-role" onchange="saveP1Role()">
                     <option value="" disabled selected>Choose a role...</option>
                     <option value="sys-arch">Systems Architect</option>
@@ -153,7 +153,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
                 <br/><br/>
-                <p id="p2-name"></p>
+                <p id="p2-name" style="margin: 3px !important;"></p>
                 <ons-select id="p2-role" onchange="saveP2Role()">
                     <option value="" disabled selected>Choose a role...</option>
                     <option value="sys-arch">Systems Architect</option>
@@ -162,7 +162,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
                 <br/><br/>
-                <p id="p3-name"></p>
+                <p id="p3-name" style="margin: 3px !important;"></p>
                 <ons-select id="p3-role" onchange="saveP3Role()">
                     <option value="" disabled selected>Choose a role...</option>
                     <option value="sys-arch">Systems Architect</option>
@@ -171,7 +171,7 @@ document.getElementById('roles').innerHTML = `
                     <option value="team-lead">Team Lead</option>
                 </ons-select>
                 <br/><br/>
-                <p id="p4-name"></p>
+                <p id="p4-name" style="margin: 3px !important;"></p>
                 <ons-select id="p4-role" onchange="saveP4Role()">
                     <option value="" disabled selected>Choose a role...</option>
                     <option value="sys-arch">Systems Architect</option>

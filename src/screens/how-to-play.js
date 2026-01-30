@@ -3,7 +3,7 @@ document.getElementById('how-to-play').innerHTML = `
         <ons-page id="how-to-play">
             <ons-toolbar>
                 <div class="left"><ons-back-button>Back to Game</ons-back-button></div>
-                <div class="center">How to Play</div>
+                <div class="center" style="font-size: 20px !important;">How to Play</div>
                 <div class="right">
                     <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
                 </div>

@@ -9,7 +9,7 @@ document.getElementById('home').innerHTML = `
    <template id="home.html">
        <ons-page id="homepage">
           <ons-toolbar>
-            <div class="center" tabindex="0">Undecided?</div>
+            <div class="center" style="font-size: 20px !important;">Undecided?</div>
             <div class="right" tabindex="0">
                 <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
             </div>

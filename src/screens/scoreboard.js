@@ -180,7 +180,7 @@ document.getElementById('scorecard').innerHTML = `
                 <div class="left">
                     <ons-toolbar-button><ons-icon id="help" icon="ion-ios-help-circle-outline, material:md-help-outline" size="35px"></ons-icon></ons-toolbar-button>
                 </div>
-                <div class="center"></div>
+                <div class="center" style="font-size: 20px !important;"></div>
                 <div class="right">
                     <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
                 </div>
@@ -464,26 +464,27 @@ document.getElementById('scorecard').innerHTML = `
     
     <template id="milestone-review.html">
         <ons-dialog id="milestone-review">
-            <div style="text-align: center; padding: 10px;">
+            <div style="text-align: center; padding: 10px; height: 70vh; overflow-y: auto">
                 <h3>Milestone Review</h3>
                 <p><i><b>Instructions:</b> Have players go clockwise around the table and craft a narrative about everything they had done until reaching the gate. After everyone has finished telling their narratives, begin voting by asking everyone who they thought had the best narrative. With their eyes closed, players will put up their hands to vote. Use the input boxes below to record the number of hands (votes) for each participant.</i></p>
                 <div id="votes" style="display: flex; flex-direction: column; align-items: center">
                     <div style="display: flex; flex-direction: row">
                         <label for="team-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
-    
+                    <br/>
                     <div style="display: flex; flex-direction: row">
                         <label for="tech-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
-                    
+                    <br/>
                     <div style="display: flex; flex-direction: row">
                         <label for="sys-arch"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
-                    
+                    <br/>                   
                     <div style="display: flex; flex-direction: row">
                         <label for="ux-lead"></label><input type="number" style="font-size: 16px" name="mr-vote" id="bc-tech-lead" value="0" min="0" max="100">
                     </div>
-                    <div style="padding-top: 10px">
+                    <br/><br/>
+                    <div>
                         <ons-button onclick="showWinner()">
                             <ons-icon icon="ion-ios-checkmark-circle, material:md-check-circle" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
                             Submit Votes
@@ -500,16 +501,13 @@ document.getElementById('scorecard').innerHTML = `
     </template>
     
     <template id="best-narrative.html">
-        <ons-dialog id="best-narrative">
-            <div style="text-align: center; padding: 10px;">
-                <h3>Winner, winner, chicken dinner <span role="img" aria-label="chicken">🍗</span></h3>
-                <div id="winner" style="font-size: 18px; margin-bottom: 20px" ></div>
-                <div><ons-button onclick="displayCurrentTeamScores()">
-                    <ons-icon icon="fa-torii-gate" size="25px" style="vertical-align: middle; padding-right: 5px"></ons-icon>
-                    Check Gate Conditions
-                </ons-button></div>
+        <ons-alert-dialog id="best-narrative" modifier="rowfooter">
+            <div id="best-narrative-title" class="alert-dialog-title">Winner, winner, chicken dinner <span role="img" aria-label="chicken">🍗</span></div>
+            <div id="winner" class="alert-dialog-content"></div>
+            <div class="alert-dialog-footer">
+                <ons-alert-dialog-button onclick="displayCurrentTeamScores()">Check Gate Conditions</ons-alert-dialog-button>
             </div>
-        </ons-dialog>
+        </ons-alert-dialog>
     </template>
     
     <template id="gate-check.html">
