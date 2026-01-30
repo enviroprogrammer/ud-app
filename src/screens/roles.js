@@ -138,7 +138,7 @@ document.getElementById('roles').innerHTML = `
           <ons-toolbar>
             <div class="left"><ons-back-button onclick="sessionStorage.clear()">Players</ons-back-button></div>
             <div class="center">Assign Roles</div>
-            <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px"></ons-icon></ons-toolbar-button></div>
+            <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button></div>
           </ons-toolbar>
           <section style="text-align: center; padding: 10px; margin-left: 15px; margin-right: 15px"">
             <h2>Assign <b>roles</b> to each player,<br/>either by <b>rolling the dice and randomly assigning roles</b> or <b>deliberating as a group.</b></h2>
