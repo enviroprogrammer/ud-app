@@ -178,7 +178,7 @@ document.getElementById('scorecard').innerHTML = `
         <ons-page id="scorecard">
             <ons-toolbar>
                 <div class="left">
-                    <ons-toolbar-button><ons-icon id="help" icon="ion-ios-help-circle-outline, material:md-help-outline" size="25px"></ons-icon></ons-toolbar-button>
+                    <ons-toolbar-button><ons-icon id="help" icon="ion-ios-help-circle-outline, material:md-help-outline" size="35px"></ons-icon></ons-toolbar-button>
                 </div>
                 <div class="center"></div>
                 <div class="right">
