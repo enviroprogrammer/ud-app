@@ -11,7 +11,7 @@ document.getElementById('home').innerHTML = `
           <ons-toolbar>
             <div class="center" tabindex="0">Undecided?</div>
             <div class="right" tabindex="0">
-                <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px" aria-label="toggle between light and dark mode"></ons-icon></ons-toolbar-button>
+                <ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button>
             </div>
           </ons-toolbar>
           <section style="text-align: center; padding: 10px">
