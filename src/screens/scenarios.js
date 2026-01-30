@@ -34,7 +34,7 @@ document.getElementById('scenarios').innerHTML = `
             <ons-toolbar>
                 <div class="left"><ons-back-button>Names</ons-back-button></div>
                 <div class="center">Scenario Selection</div>
-                <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="25px"></ons-icon></ons-toolbar-button></div>
+                <div class="right"><ons-toolbar-button onclick="toggleMode()"><ons-icon id="toggle" icon="ion-ios-contrast, material:md-brightness-6" size="35px"></ons-icon></ons-toolbar-button></div>
             </ons-toolbar>
             <section style="text-align: center">
                 <h2>Choose the <b>scenario</b> you wish to play:</h2>
