@@ -197,15 +197,15 @@ let playCard = function() {
 
 let showPlayCardDialog = function(card) {
     let pcd = document.getElementById('play-card-dialog');
-    playedCard = card;
+    playedCard = card.trim();
 
     if (pcd) {
         pcd.show();
     } else {
         ons.createElement('play-card-dialog.html', { append: true })
             .then(function(dialog) {
-                document.getElementById('qr-card').innerHTML = `You scanned: ${card.trim()}`;
-                document.getElementById('qr-result').innerHTML = `Are you sure you want to play ${card.trim()}?`; // some card names (pulled from scanning QR codes) have trailing white space; trim() is used to remove it
+                document.getElementById('qr-card').innerHTML = `You scanned: ${playedCard}`;
+                document.getElementById('qr-result').innerHTML = `Are you sure you want to play ${playedCard}?`; // some card names (pulled from scanning QR codes) have trailing white space; trim() is used to remove it
                 dialog.show();
             })
             .then(() => {
