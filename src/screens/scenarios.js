@@ -80,7 +80,7 @@ document.getElementById('scenarios').innerHTML = `
     
     <template id="scenario-descriptions.html">
         <ons-alert-dialog id="scenario-descriptions">
-            <div style="height: 70vh; overflow-y: auto;">
+            <div style="overflow-y: auto;">
                 <div class="alert-dialog-title" style="font-size: 23px !important;">Scenarios</div>
                 <div class="alert-dialog-content" style="font-size: 16px !important;">
                         <p><b>Angry Cats:</b> You work in a cross-functional team at a startup game studio, and you have just signed a contract with a notable publisher to develop and release a new game.</p>
