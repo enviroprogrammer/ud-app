@@ -306,7 +306,7 @@ let changePlansA = function () {
         });
 }
 
-// Change Plans B (Angry Cats)
+// Change Plans B (Angry Cats & DysTalk)
 let changePlansB = function () {
     ons.notification.alert(`Your team has decided to rethink their strategy and possible next steps, but anticipate that the changes will be minor.<br/><br/>Lose one card from your team's hand.`, {title: 'Change of plans!'})
         .then(() => {

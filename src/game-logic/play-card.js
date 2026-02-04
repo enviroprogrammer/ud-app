@@ -99,8 +99,6 @@ let playCard = function() {
             case 'Change Plans B':
                 if (currentScenario === 'Earthbook 🌎') {
                     ons.notification.alert(`This card is not yet playable with <i>Earthbook</i>!`);
-                } else if (currentScenario === 'DysTalk 📞') {
-                    ons.notification.alert(`This card is not yet playable with <i>DysTalk</i>!`);
                 } else {
                     changePlansB();
                 }
