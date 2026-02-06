@@ -589,10 +589,10 @@ document.getElementById('scorecard').innerHTML = `
             <div style="text-align: center; padding: 10px;">
                 <h4>Roll the dice to determine the success of your new teammate, who is a security expert.</h4>
                 <br/>
-                <div><img src="/ud-app/public/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
+                <div><img src="/ud-app/public/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
                 
                 <!-- for testing locally -->
-<!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
+<!--                <div><img src="/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
                 <br/>
             </div>
         </ons-dialog>
@@ -604,10 +604,10 @@ document.getElementById('scorecard').innerHTML = `
             <div style="text-align: center; padding: 10px;">
                 <h4>Roll the dice to determine the success of your new teammate, who is a game developer.</h4>
                 <br/>
-                <div><img src="/ud-app/public/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
+                <div><img src="/ud-app/public/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
                 
                 <!-- for testing locally -->
-<!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
+<!--                <div><img src="/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
                 <br/>
             </div>
         </ons-dialog>
@@ -618,10 +618,10 @@ document.getElementById('scorecard').innerHTML = `
             <div style="text-align: center; padding: 10px;">
                 <h4>Roll the dice to determine if you will lose your teammate to your competitor (or not).</h4>
                 <br/>
-                <div><img src="/ud-app/public/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
+                <div><img src="/ud-app/public/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
                 
                 <!-- for testing locally -->
-<!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
+<!--                <div><img src="/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
                 <br/>
             </div>
         </ons-dialog>
@@ -632,10 +632,10 @@ document.getElementById('scorecard').innerHTML = `
             <div style="text-align: center; padding: 10px;">
                 <h4>Roll the dice to determine the success of your competitor's new game.</h4>
                 <br/>
-                <div><img src="/ud-app/public/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
+                <div><img src="/ud-app/public/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>
                 
                 <!-- for testing locally -->
-<!--                <div><img src="/dice-six-svgrepo-com.svg" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
+<!--                <div><img src="/red-dice.webp" alt="dice" style="width: 100%;" onclick="diceRoll()"></div>-->
                 <br/>
             </div>
         </ons-dialog>

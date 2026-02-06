@@ -1,11 +1,11 @@
-let cardWithITElement; // card with intertemporal element
+let cardWithITElement = ''; // card with intertemporal element
 let ieCounter = 0; // for intertemporal elements; count up to 4 weeks
 let ieAlert; // alert message that shows up each time the intertemporal element from a card is applied
 let weeks; // how many weeks do intertemporal effects take place?
 let ie; // intertemporal element from card to be applied
 
 let setCardWithITElement = function(card) {
-    if (cardObj.cards[cardIndex].intertemporalElement) { // scanned card has an intertemporal element
+    if (cardObj.cards[cardIndex].intertemporalElement && cardWithITElement === '') { // scanned card has an intertemporal element
         cardWithITElement = card;
         sessionStorage.setItem('Card with Intertemporal Element', cardWithITElement);
         sessionStorageSetup();
@@ -48,9 +48,9 @@ let intertemporalElement = function (card) {
                     ieAlert.then(() => {
                         triggerMajorEvent();
                     })
-                    .then(() => {
-                        phase1ScoreSetup();
-                    })
+                        .then(() => {
+                            phase1ScoreSetup();
+                        })
                 } else {
                     ieAlert.then(() => {
                         phase1ScoreSetup();
@@ -87,10 +87,8 @@ let intertemporalElement = function (card) {
             }
             ieCounter++;
         }
-    }
-
     if (ieCounter >= weeks + 1) {
         ieCounter = 0; // reset counter to allow another card with an intertemporal element to be played
         cardWithITElement = ''; // reset card with intertemporal element so another similar card can be played
-    // }
+    }
 }
