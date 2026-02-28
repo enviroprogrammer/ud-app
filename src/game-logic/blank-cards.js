@@ -88,6 +88,11 @@ let playBlankCard = function() {
                 if (cardWithITElement) {
                     intertemporalElement(cardWithITElement);
                 }
+            })
+            .then(() => {
+                if (totalTechLeadScore >= 10 && totalTeamLeadScore >= 10 && totalUXLeadScore >= 10 && totalSysArchScore >= 10) {
+                    triggerMajorEvent();
+                }
             });
     }
     removeBlankCardDialog();

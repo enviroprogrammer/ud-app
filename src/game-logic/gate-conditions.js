@@ -34,10 +34,10 @@ const dtTeamLeadP3 = 40;
 
 // gate conditions for Earthbook
 // Phase 1
-const ebSysArchP1 = 6;
-const ebUXLeadP1 = 15;
-const ebTechLeadP1 = 9;
-const ebTeamLeadP1 = 14;
+const ebSysArchP1 = 4;
+const ebUXLeadP1 = 12;
+const ebTechLeadP1 = 7;
+const ebTeamLeadP1 = 10;
 
 // Phase 1 (condensed)
 // const ebSysArchP1 = 3;
@@ -46,9 +46,9 @@ const ebTeamLeadP1 = 14;
 // const ebTeamLeadP1 = 7;
 
 // Phase 2
-const ebSysArchP2 = 22;
-const ebUXLeadP2 = 30;
-const ebTechLeadP2 = 24;
+const ebSysArchP2 = 20;
+const ebUXLeadP2 = 28;
+const ebTechLeadP2 = 21;
 const ebTeamLeadP2 = 25;
 
 // Phase 2 (condensed)
@@ -58,10 +58,10 @@ const ebTeamLeadP2 = 25;
 // const ebTeamLeadP2 = Math.floor(25 / 2);
 
 // Phase 3
-const ebSysArchP3 = 41;
-const ebUXLeadP3 = 41;
-const ebTechLeadP3 = 39;
-const ebTeamLeadP3 = 39;
+const ebSysArchP3 = 39;
+const ebUXLeadP3 = 39;
+const ebTechLeadP3 = 35;
+const ebTeamLeadP3 = 35;
 
 // Phase 3 (condensed)
 // const ebSysArchP3 = Math.floor(41 / 2);
