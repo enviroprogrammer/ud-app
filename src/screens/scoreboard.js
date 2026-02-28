@@ -430,7 +430,7 @@ document.getElementById('scorecard').innerHTML = `
         <div style="text-align: center; padding: 10px;">
             <h3>How would you like to distribute points?</h3>
             <i><b>Note:</b> Distributed points must add up to the <b>sum of the total action points.</b></i>
-            <div style="display: flex; flex-direction: row">
+            <div style="display: flex; flex-direction: row; justify-content: space-around">
                 <div style="display: flex; align-items: center; flex-direction: column;">
                     <p><b>Action Points Per Player</b></p>
                     <p id="team-lead-ap-total"></p>

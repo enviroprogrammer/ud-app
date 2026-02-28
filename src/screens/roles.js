@@ -222,7 +222,7 @@ document.getElementById('roles').innerHTML = `
 <!--                    </ons-button>-->
 <!--                </div>-->
 <!--            </div>-->
-            <div style="height: 70vh; overflow-y: auto;">
+            <div style="overflow-y: auto;">
                 <div class="alert-dialog-title" style="font-size: 23px !important;">Roles</div>
                 <div class="alert-dialog-content" style="font-size: 16px !important;">
                         <p><b>Systems Architect:</b> responsible for <b>gathering system requirements</b> and defining the <b>system architecture</b> that fulfills these requirements.<br/>Focuses on <b>internal</b> quality.</p>
