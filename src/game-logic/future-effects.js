@@ -190,7 +190,7 @@ let futureEffect = function() {
                     intertemporalElement(cardWithITElement);
                 }
             });
-        } else if (majorEventOption === ' Reject offer and become coop' || majorEventOption === ' REJECT OFFER AND BECOME COOP') {
+        } else if (majorEventOption === ' Reject offer and become co-op' || majorEventOption === ' REJECT OFFER AND BECOME CO-OP') {
             feAlert = ons.notification.alert(`While there were little to no short-term effects with <i>Earthbook</i>, the long-term effects are actually very positive because you decided to form a coop rather than accept venture capital funding. <i>Earthbook</i> ends up going viral among many environmentalist circles around the world, with more new users than you can count joining every week! Some of these new users say that it is far better than Facebook and other mainstream social networks, and they have never looked back.<br/><br/>Everyone has earned 5 team points and 5 action points each. Amazing work!`).then(() => {
                 coopFutureEffect();
             })
