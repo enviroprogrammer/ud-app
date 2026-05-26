@@ -398,7 +398,7 @@ document.getElementById('scorecard').innerHTML = `
                     <b>Choose one of the following 3 options:</b>
                     <p><b>Accept VC offer:</b> Delving into venture capital was not something you had considered before. Nonetheless, you view investment by VC firms as an opportunity for <i>Earthbook</i>'s growth and exposure to other user bases, including those that may not consider themselves environmentalists but have a strong passion for the environment. Venture capitalists will also help with mass marketing and ensuring <i>Earthbook</i>'s longevity. However, you will lose creative control over <i>Earthbook</i>, but you'll receive mentorship and funding from venture capitalists to help <i>Earthbook</i> become a successful social network.</p>
                     <p><b>Reject offer and continue:</b> The offer sounds promising, but you'd rather have <i>Earthbook</i> supported by donations instead of turn it into a VC-backed company for profit, so you simply keep doing what you're doing.</p>
-                    <p><b>Reject offer and become coop:</b> You and your team made it clear in the kickoff meeting that <i>Earthbook</i> is not for profit. Better yet, the term "venture capital" was not uttered once by anyone. Because Earthbook thrives on sustainability, which in turn thrives on degrowth, you decide to turn <i>Earthbook</i> into a coop in favour of a just, sustainable economy that places human wellbeing over profit. Sustainability heavily prides itself on cutting down on energy and resource consumption to prioritize human wellbeing over profit within planetary boundaries. This is also known as <b>degrowth</b>. As a result, you decide to turn Earthbook into a coop.</p>
+                    <p><b>Reject offer and become co-op:</b> You and your team made it clear in the kickoff meeting that <i>Earthbook</i> is not for profit. Better yet, the term "venture capital" was not uttered once by anyone. Because Earthbook thrives on sustainability, which in turn thrives on degrowth, you decide to turn <i>Earthbook</i> into a co-operative in favour of a just, sustainable economy that places human wellbeing over profit. As a result, you decide to turn Earthbook into a co-op.</p>
                     <br/><br/>
                     <div>
                         <ons-button id="accept-vc" onclick="acceptVcOffer()">
@@ -417,7 +417,7 @@ document.getElementById('scorecard').innerHTML = `
                     <div>
                         <ons-button id="reject-coop" onclick="rejectFormCoop()">
                             <ons-icon icon="fa-users" size="25px" style="vertical-align: middle; padding-right: 5px;"></ons-icon>
-                            Reject offer and become coop
+                            Reject offer and become co-op
                         </ons-button>
                     </div>
                 </div>
