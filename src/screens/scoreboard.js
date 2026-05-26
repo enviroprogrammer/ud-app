@@ -292,7 +292,7 @@ document.getElementById('scorecard').innerHTML = `
     <template id="qr-code-scanner.html">
         <ons-dialog id="qr-code-scanner">
             <div style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
-                <h3 style="text-align: center">Use your phone's camera to scan the QR code on the card you wish to play!</h3>
+                <h3 style="text-align: center">Use your device's camera to scan the QR code on the card you wish to play!</h3>
                 <div>
                     <div id="reader"></div>
                 </div>
